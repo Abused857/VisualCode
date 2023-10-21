@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href ="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Necesito un bloque para la imagen y otro para la lista
+    el nav no deja de ser un div que se usa para el navegador asique
+    no hace falta que cree otro div
+    al header un spacebeetwen y displayflex para poner en linea los bloques
+    separarlos y align item para estar a la misma altura-->
+    <header>
+        <div class="divHeader">
+            <img src="./img/logo.png" alt="texto de descripcion de la imagen para el seo">
+        </div>
+
+        <nav class="navHeader">
+            <ul class="navLista">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!--div que va contener todo el cuerpo antes del footer, en este
+    ejercicio no hay footer (usare los logos como footer)pero bueno, creo que se le llamaba 
+    wrapper o los videos que veia en su momento me sonaba que esto era el wrapper
+    bah lo que sea-->
+    <div class ="wrapper">
+
+        <!--Hay muchas formas de hacerlo como todo
+        un div para el texto otro para la imagen y otro para el boton
+    pero lo mas clean veo que va a ser un div que usaremos para el display flex
+    ydos div internos uno para el texto y boton
+    y otro para la imagen, al primero con los padding se lograra 
+    ese efecto de espacio entre secciones y la imagen tamaño margin y no le veo nada mas
+    un space between al contenedor grande ya  correr y el align item para que no 
+    estar jugando con los margenes en negativo que queda hecho una chorizada luego-->
+
+    <div class="section1">
+        <div class ="section1Text" >
+            <h1>Ready to face any condition !</h1>
+            <p>
+                Este es un p que simula una breve descripcion, eslogan o gancho para hacerte
+                clickar en el boton y guiarte como un dummy hasta la pasarela de pago
+            </p>
+            <button>Order Now</button>
+        </div>
+    </div>
+
+    <div class = "section1Img">
+        <img src="./img/stitch.png" alt="texto de descripcion de la imagen para el seo">
+    </div>
+    </div>
+
+    <!--Footer usare las redes sociales esas
+    se que habia una pagina por ahi donde copias la url y las usabas para poner
+    los icon pero ya que estaba lo descargue y fueri
+
+    nunca lo he mirado como se suele hacer esto
+    pero vamos yo siempre hice lista con li y en cada li un a luego como 
+    en el navegador unos display margin y a correr
+    supongo que se pueda hacer solo con a con 3 div y dentro el icono 
+    yo hare una lista
+
+    dejo la almohadilla aunq es obvio que poniendo la url nos llevaria al enlace no se si hay que comentarlo
+    pero bueno dicho queda
+    -->
+
+    <footer>
+        <ul class="redesFooter">
+            <li><a href="#"><img src="./img/instagram.png"></a></li>
+            <li><a href="#"><img src="./img/gorjeo.png"></a></li>
+            <li><a href="#"><img src="./img/facebook.png"></a></li>
+        </ul>
+    </footer>
+    
+</body>
+</html>
