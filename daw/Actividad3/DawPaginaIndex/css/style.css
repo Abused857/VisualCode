@@ -1,0 +1,232 @@
+
+/*
+para unas cosas uso px y otras em dependiendo la distancia principalmente
+la em era la distancia que ocupa una M mayuscula, o eso me dijo
+el jefe en las practicas 
+
+Las imagenes no estuve en clase asi que no se si se puede clickar en ellas
+como la de la zapatilla, al final seria envolver la imagen en un a 
+me acabo de dar cuenta al terminar lo dejo comentado por si sirve de algo
+*/
+
+
+
+*{
+   /*
+   con el margin auto se logra lo mismo
+   que con space between
+   aunque es mejor usar el margin auto
+   para paginas que pongan banners
+   a los laterales
+   */
+   font-family: Arial, Helvetica, sans-serif;
+/*
+margen general a la izquierda de manual, el derecho con los flex 
+ya los ire ajustando dependiendo a la necesidad que la imagen no va a tener lo mismo que el nav de margen a la derecha 
+mientras que por laizquierda todo empieza
+a la misma altura*/
+   margin-left: 10px;
+    
+}
+a{
+    /* capricho personal de quitar el subrayado
+    y color a todos los enlaces
+    y poner lo que yo quiera en cada uno de ellos*/
+    text-decoration: none;
+    color: rgb(8, 8, 8);
+    /*creo que esta en negrita en el ejercicio
+    le damos ese estilo sin mas*/
+    font-weight: bold;
+}
+
+/*color de fondo para ir viendo que el png haga lo suyo*/
+body{background-color: orange;}
+header{
+    /*todo el contenido del header en la misma fila*/
+    display: flex;
+    /* separa los elementos que no esten agrupados en el mismo div por ejemplo
+    cada uno pa un lado*/
+    justify-content: space-between;
+    /*pongo los distintos bloques a la misma
+    altura
+    el div y la lista en este caso*/
+    align-items: center;
+}
+.divHeader{
+   
+    
+}
+.divHeader  img{
+    /*la imagen la veo bien asi
+    no necesito hacerla mas grande o meterla mas adentro
+    a mi me cuadra bien tal y como esta*/
+    width:70px;
+    /*
+    al final la meti un poco para dentro
+    quizas sea porque pille la primera que vi
+    el tamaño que no es tan ancha o que se yo, pero es que
+    es meh ponga como la ponga
+    */
+    margin-left: 30px;
+}
+
+.navHeader{
+
+    display: flex;
+
+    
+}
+.navLista{
+    /*
+    quitamos los puntos de la lista
+    la ponemos en una misma linea
+    y el space beetwen hace la funcion de float right 
+    asique no se usa
+    */
+    list-style: none;
+    display: flex;
+    /*separamos la lista del borde*/
+    margin-right: 5EM;
+}
+.navLista li{
+    /*separamos las lineas de las otras*/
+    margin-right: 5em;
+}
+.navLista li a:hover{
+    /*no s epide, pero bueno va de la mano un navegador con hover*/
+    color: blanchedalmond;
+}
+.wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /*un poco de aire con el header y el margen izquierdo*/
+
+    margin-top: 200px;
+
+}
+.section1Text{
+    /*
+    podria meyter un max width para ajustarlo, pero estoy ok con el resultado
+    un margin timidin venga
+    */
+
+margin-right: 50px;
+}
+.section1Text p{
+/*
+    no veo bien las distancias en la imagen de referencia
+    me parece mas pequeña la letra pero claro tmb esque la imagen del ejemplo ocupa un pequeño espacio de la pantalla
+    y esto que estoy haciendo es a pantalla completa, asi se queda
+*/
+    font-size: 1em;
+    /*
+    no habia quien mirase el texto con la fuente  general que puse
+    pude hacer una fuente general para la p
+    pero como no hay mas texto lo dejo aqui metido
+    */
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.section1Text button{
+
+    border-radius: 2em;
+    /*si se ponen 4 ajustas todos los lados, uno afecta a todos los lados
+    y 2 el primero es arriba y abajo el segundo a los lados
+    creo mas aire dentro del boton*/
+    padding: 10px 20px;
+
+    /*
+    color que aprecio del pdf sin mas*/
+    color: orange;
+    background-color: rgb(231, 231, 5);
+  
+}
+.section1Text button:hover{
+
+    /*
+    un hover sin mas que aumenta el tamaño del boton
+    con una transicion easy-in (la unica que suelo usar la verdad)
+    que aumenta el tamaño del boton cons cale y le pone una sombra con box shadow
+    me gusta como quedaan estos efectos sin mas no restan
+    */
+/*
+    el color deberia ser igual que el del navegador no es recomendable usar diferentes fuentes y colores
+    por temas de seo y tal
+*/
+    background-color: chocolate;
+    color: antiquewhite;
+    transform: scale(1.1);
+    transition: ease-in 0.2s;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+
+}
+
+.section1Img {
+    /*ajustandola*/
+    margin-right: 170px;
+}
+.section1Img img{
+
+    /*tamaño de la imagen que es a lo alto no a lo ancha como la del pdf
+    pero bueno mas o menos por aqui creo que hace fit
+    */
+    width: 300px;
+    
+}
+footer{
+    margin-top: 200px;
+    
+}
+.redesFooter{
+    
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    /*
+    
+    en este caso me molesta el padding predeterminado de la lista
+    asique fuera el margin por ponerle tambien aunque no haria falta
+    sabia que uno de los dos que crea las listas por defecto me estaba molestando
+    no le doy margint op porque lo veo bien tal y como esta
+    */
+    
+}
+.redesFooter img{
+    margin-right: 50px;
+    width: 25px;
+}
+
+@media (max-width: 768px) {
+    *{
+       max-width: 100%;
+       margin: auto;
+    
+    }
+   
+    .wrapper {
+      
+       flex-direction: column;
+       align-items: center;
+
+        
+    }
+    .section1{
+        text-align: center;
+        background-color: black;
+        
+    }
+
+    .section1Text {
+     
+    }
+
+    .section1Img img {
+   
+        margin-top: 50px;
+    }
+
+    .section1Text button {
+        font-size: 18px; /* Tamaño de fuente ligeramente más pequeño */
+    }
+}
