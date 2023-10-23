@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reordenar Elementos</title>
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Reordenar Elementos</h1>
+  <ul id="listaElementos">
+    <li>PRIMERO <button onclick="moverArriba(this)">Mover Arriba</button> <button onclick="moverAbajo(this)">Mover Abajo</button></li>
+    <li>SEGUNDO <button onclick="moverArriba(this)">Mover Arriba</button> <button onclick="moverAbajo(this)">Mover Abajo</button></li>
+    <li>TERCERO <button onclick="moverArriba(this)">Mover Arriba</button> <button onclick="moverAbajo(this)">Mover Abajo</button></li>
+  </ul>
+  
+  <script>
+    // Función para mover un elemento hacia arriba en la lista
+    function moverArriba(button) {
+      var elemento = button.parentNode; //elemento='li'
+      var lista = elemento.parentNode; //lista ='ul'
+      var indice = Array.prototype.indexOf.call(lista.children, elemento); //supongamos el primero = 0.
+
+      if (indice > 0) {
+        lista.insertBefore(elemento, lista.children[indice - 1]);
+      }
+    }
+
+    // Función para mover un elemento hacia abajo en la lista
+    function moverAbajo(button) {
+      var elemento = button.parentNode;
+      var lista = elemento.parentNode;
+      var indice = Array.prototype.indexOf.call(lista.children, elemento);
+
+      if (indice < lista.children.length - 1) {
+        lista.insertBefore(elemento, lista.children[indice + 2]);
+      }
+    }
+  </script>
+</body>
+</html>

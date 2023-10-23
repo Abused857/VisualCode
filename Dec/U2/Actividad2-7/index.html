@@ -9,12 +9,57 @@
     <form>
 
         <label>Input a introducir: </label>
-        <input type = "text" name = "input" autofocus placeholder="introduce el campo">
+        <input type = "text" id = "input" name = "input" autofocus placeholder="introduce el campo">
         <br>
         <br>        
-        <label>Pattern a introducir: </label>
-    
-
+        <label>Pattern a introducir: </label> 
+        <input type = "text" id = "pattern" name = "pattern" placeholder="introduce el pattern">
+        <br>
+        <br>
+        <input type="checkbox" id ="check">
+        <label>Required </label> 
+       
+        
     </form>
+    <br>
+    <br>
+    <button onclick="addForm()">Agregar input</button>
+    <br>
+    <br>
+    <form id ="lista-form">
+   
+    </form>
+    
+<script>
+    function addForm() {
+        const inputA = document.getElementById("input").value;
+        const patternA = document.getElementById("pattern").value;
+
+        const forma = document.getElementById('lista-form');
+        const inputI = document.createElement('input');
+        const labelL = document.createElement('label');
+        const botonL = document.createElement('input');
+        inputI.type = "text";
+        inputI.value = "";
+        inputI.placeholder= "Pattern: " + "\\" + patternA + "\\";
+        inputI.pattern =patternA ;
+        inputI.required = true;
+        labelL.textContent = inputA + ": ";
+        botonL.type = "submit";
+        
+        forma.appendChild(labelL);
+        forma.appendChild(inputI);
+        forma.appendChild(botonL);
+
+        document.getElementById("input").value = "";
+        document.getElementById("pattern").value = "";
+        document.getElementById("check").removeAttribute(required);
+        
+       
+
+    
+    
+    }
+</script>
 </body>
 </html>

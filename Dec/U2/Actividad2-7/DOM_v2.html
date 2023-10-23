@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manipulación del DOM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #task-list {
+            width: 300px;
+            margin: 0 auto;
+        }
+        .task {
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .task button {
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Tareas</h1>
+    <div id="task-list">
+        <input type="text" id="new-task" placeholder="Nueva tarea">
+        <button onclick="addTask()">Agregar Tarea</button>
+        <ul id="tasks"></ul>
+    </div>
+
+    <script>
+        function addTask() {
+            const taskText = document.getElementById('new-task').value;
+            if (taskText.trim() == '') {
+                alert('Por favor, ingrese una tarea válida.');
+                return;
+            }
+
+            const taskList = document.getElementById('tasks');
+            const taskItem = document.createElement('li');
+            taskItem.innerHTML = `
+                <div class="task">
+                    <span>${taskText}</span>
+                    <button onclick="removeTask(this)">Eliminar</button>
+                </div>
+            `;
+            taskList.appendChild(taskItem);
+
+            // Limpiar el campo de entrada
+            document.getElementById('new-task').value = '';
+        }
+
+        function removeTask(button) {
+            const taskItem = button.parentElement.parentElement; 
+            const taskList = document.getElementById('tasks');
+            taskList.removeChild(taskItem);
+        }
+    </script>
+</body>
+</html>

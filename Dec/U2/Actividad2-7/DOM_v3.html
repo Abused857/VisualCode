@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejemplo de appendChild y parentNode</title>
+  <style>
+    #lista {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="contenedor">
+    <ul id="lista">
+      <li>Elemento 1</li>
+      <li>Elemento 2</li>
+      <li>Elemento 3</li>
+      
+
+    </ul>
+  </div>
+  
+  <button onclick="agregarElemento()">Agregar Elemento</button>
+  <button onclick="eliminarElemento()">Eliminar Elemento</button>
+
+  <script>
+    // Función para agregar un nuevo elemento a la lista
+    function agregarElemento() {
+      var lista = document.getElementById('lista');
+      var nuevoElemento = document.createElement('li');
+      nuevoElemento.textContent = 'Nuevo Elemento';
+      lista.appendChild(nuevoElemento);
+    }
+
+    // Función para eliminar el último elemento de la lista
+    function eliminarElemento() {
+      var lista = document.getElementById('lista');
+      var ultimoElemento = lista.lastChild;
+      if (ultimoElemento) {
+        lista.removeChild(ultimoElemento);
+      }
+    }
+  </script>
+</body>
+</html>
