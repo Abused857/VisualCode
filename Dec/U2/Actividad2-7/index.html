@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        div{
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <form>
@@ -32,34 +38,87 @@
     
 <script>
     function addForm() {
-        const inputA = document.getElementById("input").value;
-        const patternA = document.getElementById("pattern").value;
 
-        const forma = document.getElementById('lista-form');
-        const inputI = document.createElement('input');
-        const labelL = document.createElement('label');
-        const botonL = document.createElement('input');
-        inputI.type = "text";
-        inputI.value = "";
-        inputI.placeholder= "Pattern: " + "\\" + patternA + "\\";
-        inputI.pattern =patternA ;
+    //recojo las variables del campo del input y del pattern
+    const inputA = document.getElementById("input").value;
+    const patternA = document.getElementById("pattern").value;
+
+    //al igual que con los radio buttons de java, al buscar me di cuenta que funcionan igual
+    const isRequired = document.getElementById("check").checked;
+
+
+    //recojo el valor del formulario vacio que cree
+    //creo lo elementos que va tener cada entrada tras dar a crear
+    //un label con el nombre del campo y un campo de momento
+    //solo estoy probando que funcione todo antes de agregar ademas los botones
+    const forma = document.getElementById('lista-form');
+    const inputI = document.createElement('input');
+    const labelL = document.createElement('label');
+    
+
+   //me di cuenta que a la hora de moverlo necesito una organizacion clara puesto que 
+   //antes del input estara el label y no el anterior input y veo que va a ser un cristo
+   //creo un elemento div que contenga cada label campo y futuros botones asi lo anteior div
+   //sera otro div con la misma estructura interna
+
+   //podria haberlo hecho con un innerHtML pero en el punto que me di cuenta que lo iba a necesitar
+   //me daba pereza hacer asi y al final solo necesito que todo cuelgue de algo en comun para moverlo
+   //en bloque, asique lo cuelgo de un div y al div lo cuelgo del formulario
+    const divContainer = document.createElement('div');
+
+    inputI.type = "text";
+    inputI.value = "";
+    inputI.placeholder = "Pattern: " + "\\" + patternA + "\\";
+
+
+    //obviamente lo busque y vi que funcionaba igual que los radio button de java
+    //asique sin mas lo que hace es decir si isRequired esta presionado, si lo esta le añado el atributo
+    //si no lo esta pues no hara nada
+    if (isRequired) {
         inputI.required = true;
-        labelL.textContent = inputA + ": ";
-        botonL.type = "submit";
-        
-        forma.appendChild(labelL);
-        forma.appendChild(inputI);
-        forma.appendChild(botonL);
-
-        document.getElementById("input").value = "";
-        document.getElementById("pattern").value = "";
-        document.getElementById("check").removeAttribute(required);
-        
-       
-
-    
-    
     }
+
+    labelL.textContent = inputA + ": ";
+    
+
+    //cuelgo el label e input del div como sije antes
+    divContainer.appendChild(labelL);
+    divContainer.appendChild(inputI);
+
+    //cuelgo el div del form
+    forma.appendChild(divContainer);
+    
+    const mensaje = `El pattern para validar es ${patternA}`;
+
+//`` no funciona igual que "" a la hora de mostrar variables por pantalla con el${} tiene que ser con `` no con ""
+//al inputI que cree ya esta añadido al addevent listener con su blur y enlace a la funcion sin mas
+    inputI.addEventListener(`blur`, ()=> validarPattern(inputI, mensaje));
+
+    //no me dejaba hacer la regularexpresion a machete con "\\" + patternA + "\\" no me cojia el patternA
+    //seguramente funcionase si hubiese añadido `` simplemente busque como se crea la expresion regular
+    //nueva clase RegExp (bastante logico la verdad) y le meto el pattern para que lo formatee
+    //si saco el pattern fuera se vacia en el input anterior y se renueva para el nuevo
+    //necesito que lo coja para cada uno del bloque input el pattern
+    function validarPattern(input, mensaje) {
+        const pattern = new RegExp(patternA);
+        //sin mas si no cumple con el pattern que haga algo
+        if (!pattern.test(input.value)) {
+            
+            inputI.value= "";
+            input.placeholder = `${mensaje}`;
+            
+        }
+    }
+
+    document.getElementById("input").value = "";
+    document.getElementById("pattern").value = "";
+    document.getElementById("check").checked = false;
+}
+
+
+    
+    
+    
 </script>
 </body>
 </html>
