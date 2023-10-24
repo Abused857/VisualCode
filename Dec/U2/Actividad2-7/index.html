@@ -9,6 +9,9 @@
             display: block;
             margin-top: 10px;
         }
+        .rojo {
+            border: 2px solid red;
+        }
     </style>
 </head>
 <body>
@@ -54,6 +57,10 @@
     const forma = document.getElementById('lista-form');
     const inputI = document.createElement('input');
     const labelL = document.createElement('label');
+    const botonEliminar = document.createElement(`button`);
+    const botonArriba = document.createElement(`button`);
+    const botonAbajo = document.createElement(`button`);
+    
     
 
    //me di cuenta que a la hora de moverlo necesito una organizacion clara puesto que 
@@ -66,6 +73,32 @@
    //en bloque, asique lo cuelgo de un div y al div lo cuelgo del formulario
     const divContainer = document.createElement('div');
 
+
+    //sacado de stack overflow sabia que por esto no me lo elim inaba
+    //estaba haciendo button.onclick = remove(this) y variantes, lo sabia su pm que tilt
+    /*
+    I am adding a button dynamically to HTML as shown below.
+
+When clicking that button I want to call a JavaScript function.
+
+var but = document.createElement("button");
+
+but.value="delete row";
+
+but.setAttribute("onclick","callJavaScriptFunction()");
+// this is not working
+
+    */
+
+    botonEliminar.setAttribute("onclick","remove(this)");
+    botonEliminar.textContent = "Eliminar";
+    botonEliminar.type = `button`;
+    botonArriba.setAttribute ("onclick","arriba(this)");
+    botonArriba.textContent = `Mover arriba`;
+    botonArriba.type = `button`;
+    botonAbajo.setAttribute ("onclick","abajo(this)");
+    botonAbajo.textContent = `Mover abajo`;
+    botonAbajo.type = `button`;
     inputI.type = "text";
     inputI.value = "";
     inputI.placeholder = "Pattern: " + "\\" + patternA + "\\";
@@ -84,6 +117,9 @@
     //cuelgo el label e input del div como sije antes
     divContainer.appendChild(labelL);
     divContainer.appendChild(inputI);
+    divContainer.appendChild(botonEliminar);
+    divContainer.appendChild(botonArriba);
+    divContainer.appendChild(botonAbajo);
 
     //cuelgo el div del form
     forma.appendChild(divContainer);
@@ -103,20 +139,48 @@
         const pattern = new RegExp(patternA);
         //sin mas si no cumple con el pattern que haga algo
         if (!pattern.test(input.value)) {
-            
+            input.classList.add("rojo");
             inputI.value= "";
             input.placeholder = `${mensaje}`;
             
-        }
+        }else { 
+            input.classList.remove("rojo");
+            }
     }
 
     document.getElementById("input").value = "";
     document.getElementById("pattern").value = "";
     document.getElementById("check").checked = false;
+    
 }
 
+function remove(button) {
+            const taskItem = button.parentNode; 
+            const form = document.getElementById('lista-form');
+            form.removeChild(taskItem);
+        }
 
-    
+
+
+        function arriba(button) {
+      var elemento = button.parentElement; 
+      const form = document.getElementById('lista-form');
+      var indice = Array.prototype.indexOf.call(form.children, elemento); 
+
+      if (indice > 0) {
+        form.insertBefore(elemento, form.children[indice - 1]);
+      }
+    }
+
+    function abajo(button) {
+      var elemento = button.parentNode;
+      const form = document.getElementById('lista-form');
+      var indice = Array.prototype.indexOf.call(form.children, elemento);
+
+      if (indice < form.children.length - 1) {
+        form.insertBefore(elemento, form.children[indice + 2]);
+      }
+    }
     
     
 </script>
