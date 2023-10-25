@@ -45,6 +45,17 @@
     //recojo las variables del campo del input y del pattern
     const inputA = document.getElementById("input").value;
     const patternA = document.getElementById("pattern").value;
+         //lo primero que añadir en la funcion despues de recoger los values pero lo ultimo que añadi
+         //por tema de poder hacer comprobaciones y crear filas con campos vacios
+
+         //tras recoger las variables lo primero que queremos es que si estan vacias una de las dos
+         //deje ya de hacer nada la funcion
+         //el trim elimina espacios dados porque cuentan como un caracter por asi decirlo
+         //y luego ya con los espacios eliminados comprueba si esta vacio o no el campo
+    if (inputA.trim() == "" || patternA.trim() == "") {
+        alert("Hay que rellenar los dos campos no pueden estar vacios");
+        return; 
+    }
 
     //al igual que con los radio buttons de java, al buscar me di cuenta que funcionan igual
     const isRequired = document.getElementById("check").checked;
@@ -128,25 +139,46 @@ but.setAttribute("onclick","callJavaScriptFunction()");
 
 //`` no funciona igual que "" a la hora de mostrar variables por pantalla con el${} tiene que ser con `` no con ""
 //al inputI que cree ya esta añadido al addevent listener con su blur y enlace a la funcion sin mas
-    inputI.addEventListener(`blur`, ()=> validarPattern(inputI, mensaje));
 
-    //no me dejaba hacer la regularexpresion a machete con "\\" + patternA + "\\" no me cojia el patternA
-    //seguramente funcionase si hubiese añadido `` simplemente busque como se crea la expresion regular
-    //nueva clase RegExp (bastante logico la verdad) y le meto el pattern para que lo formatee
-    //si saco el pattern fuera se vacia en el input anterior y se renueva para el nuevo
-    //necesito que lo coja para cada uno del bloque input el pattern
-    function validarPattern(input, mensaje) {
-        const pattern = new RegExp(patternA);
-        //sin mas si no cumple con el pattern que haga algo
-        if (!pattern.test(input.value)) {
-            input.classList.add("rojo");
-            inputI.value= "";
-            input.placeholder = `${mensaje}`;
-            
-        }else { 
-            input.classList.remove("rojo");
-            }
-    }
+
+/*
+a la hora de hacer esto daba por hecho que iba a salir mal porque no estoy 
+haciendo referencia al input en especifico y el evento no iba a tener manera de saber que input quiero que haga el blur
+pero funciono y aunque en mi cabeza tenia logica al principio luego pense porque es asi y no hace
+falta referenciarlo con un this o algo por el estilo para que sepa a que input tiene que lanzar el blur y 
+
+
+Usando una función anónima dentro del event listener
+se crea un cierre (closure) que "captura" las variables locales en ese momento, lo que permite que cada 
+evento blur haga referencia a las variables específicas que se capturaron en el momento en que se creó el 
+evento. Esto garantiza que cada evento blur se comunique con las variables correctas y no comparta los 
+valores entre los campos creados.
+
+Si no se utiliza una función anónima o un closure de esta manera, todos los eventos blur 
+harían referencia a las mismas variables, lo que podría llevar a un comportamiento inesperado 
+como el que has observado.
+
+closure
+
+Un cierre, también conocido como "closure" en inglés, es un concepto fundamental en la programación,
+ especialmente en lenguajes de programación que admiten funciones de primera clase como JavaScript. 
+ Un cierre se refiere a una función que "encierra" (captura) su entorno léxico, lo que significa que 
+ retiene las variables locales y otros elementos en su alcance incluso después de que la función haya 
+ terminado de ejecutarse.
+
+En otras palabras, un cierre permite que una función acceda y conserve su entorno en el momento en que se creó. Esto puede ser útil para mantener el estado y los datos relacionados con la función, incluso cuando la función ya no se está ejecutando.
+
+basicamente que hace el this por defecto la funcion anonima, como si se repplicase esta funcion por cada variable
+de tal manera que el primer campo llamado inputI se encapsulara en el evento
+y aunque cree otro campo, en este segundo campo se volvera a encapsular el input Y CUALQUIER VARIABLE QUE PASEMOS
+de tal manera que cada eventlistner hace referencia a cada inputI bueno saberlo
+
+
+*/
+    inputI.addEventListener(`blur`, ()=> validarPattern(inputI, mensaje, patternA));
+
+   
+    
 
     document.getElementById("input").value = "";
     document.getElementById("pattern").value = "";
@@ -180,6 +212,29 @@ function remove(button) {
       if (indice < form.children.length - 1) {
         form.insertBefore(elemento, form.children[indice + 2]);
       }
+    }
+    //no me dejaba hacer la regularexpresion a machete con "\\" + patternA + "\\" no me cojia el patternA
+    //seguramente funcionase si hubiese añadido `` simplemente busque como se crea la expresion regular
+    //nueva clase RegExp (bastante logico la verdad) y le meto el pattern para que lo formatee
+    //si saco el pattern fuera se vacia en el input anterior y se renueva para el nuevo
+    //necesito que lo coja para cada uno del bloque input el pattern
+
+
+    //ahora tras ver lo que hace la funcion anonima tiene mas logica lo del pattern
+    //porque me preguntaba como es que sabia dentro de la funcion a que pattern me referia
+    //si lo ponia fuera al crear el segundo input se perdia el pattern del primero pero al meterla aqui 
+    //cogia el pattern del input que debia
+    function validarPattern(input, mensaje, pattern) {
+        const patterna = new RegExp(pattern);
+        //sin mas si no cumple con el pattern que haga algo
+        if (!patterna.test(input.value)) {
+            input.classList.add("rojo");
+            input.value= "";
+            input.placeholder = `${mensaje}`;
+            
+        }else { 
+            input.classList.remove("rojo");
+            }
     }
     
     
