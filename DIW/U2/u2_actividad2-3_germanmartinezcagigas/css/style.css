@@ -25,7 +25,7 @@ margen general a la izquierda de manual, el derecho con los flex
 ya los ire ajustando dependiendo a la necesidad que la imagen no va a tener lo mismo que el nav de margen a la derecha 
 mientras que por laizquierda todo empieza
 a la misma altura*/
-   margin-left: 10px;
+   
     
 }
 a{
@@ -40,7 +40,38 @@ a{
 }
 
 /*color de fondo para ir viendo que el png haga lo suyo*/
-body{background-color: orange;}
+
+.main__bg { 
+    background-image: linear-gradient(to right top, #080B12, #7188B9, #E67E73, #6CDBFB, #524E51);
+    animation: slide 3s ease-in-out infinite alternate; 
+    position: fixed; 
+    top: 0; 
+    bottom: 0; 
+    left: -50%; 
+    right: -50%; 
+    opacity: 0.5; 
+    z-index: -1; 
+} 
+  
+.layer1 { 
+    animation-direction: alternate-reverse; 
+    animation-duration: 2s; 
+} 
+  
+.layer2 { 
+    animation-duration: 3s; 
+} 
+  
+@keyframes slide { 
+    0% { 
+        transform: translateX(-25%); 
+    } 
+    100% { 
+        transform: translateX(25%); 
+    } 
+}
+
+
 header{
     /*todo el contenido del header en la misma fila*/
     display: flex;
@@ -60,14 +91,14 @@ header{
     /*la imagen la veo bien asi
     no necesito hacerla mas grande o meterla mas adentro
     a mi me cuadra bien tal y como esta*/
-    width:70px;
+    width:5vw;
     /*
     al final la meti un poco para dentro
     quizas sea porque pille la primera que vi
     el tamaño que no es tan ancha o que se yo, pero es que
     es meh ponga como la ponga
     */
-    margin-left: 30px;
+    margin-left: 5vw;
 }
 
 .navHeader{
@@ -75,6 +106,7 @@ header{
     display: flex;
     
 }
+
 .navLista{
     /*
     quitamos los puntos de la lista
@@ -85,24 +117,25 @@ header{
     list-style: none;
     display: flex;
     /*separamos la lista del borde*/
-    margin-right: 20px;
+    margin-right: 3vw;
 }
 .navLista li{
     /*separamos las lineas de las otras*/
-    margin-right: 5em;
+    margin-right: 8vw;
 }
 .navLista li a:hover{
     /*no s epide, pero bueno va de la mano un navegador con hover*/
-    color: blanchedalmond;
+    color: #E67E73;
 }
 .wrapper{
+    margin-left: 4vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     /*un poco de aire con el header y el margen izquierdo*/
 
-    margin-top: 50px;
+    margin-top: 5vh;
 
 }
 .section1Text{
@@ -111,7 +144,7 @@ header{
     un margin timidin venga
     */
 
-margin-right: 50px;
+margin-right: 4vw;
 }
 .section1Text p{
 /*
@@ -133,12 +166,15 @@ margin-right: 50px;
     /*si se ponen 4 ajustas todos los lados, uno afecta a todos los lados
     y 2 el primero es arriba y abajo el segundo a los lados
     creo mas aire dentro del boton*/
-    padding: 10px 20px;
+
+    
+    padding: 2vh 2vw;
+    
 
     /*
     color que aprecio del pdf sin mas*/
-    color: orange;
-    background-color: rgb(231, 231, 5);
+    color: #080B12;
+    background-color: #6CDBFB;
   
 }
 .section1Text button:hover{
@@ -153,28 +189,28 @@ margin-right: 50px;
     el color deberia ser igual que el del navegador no es recomendable usar diferentes fuentes y colores
     por temas de seo y tal
 */
-    background-color: chocolate;
-    color: antiquewhite;
+    background-color: #E67E73;
+    color: #080B12;
     transform: scale(1.1);
     transition: ease-in 0.2s;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+    box-shadow: 1vh 1vh 1vh rgba(0, 0, 0, 0.7);
 
 }
 
 .section1Img {
     /*ajustandola*/
-    margin-right: 170px;
+    margin-right: 15vw;
 }
 .section1Img img{
 
     /*tamaño de la imagen que es a lo alto no a lo ancha como la del pdf
     pero bueno mas o menos por aqui creo que hace fit
     */
-    width: 300px;
+    width: 30vw;
     
 }
 footer{
-    
+    margin-left: 5vw;
 }
 .redesFooter{
     
@@ -188,43 +224,78 @@ footer{
     no le doy margint op porque lo veo bien tal y como esta
     */
     padding: 0;
-    margin: 0;
+    
 }
 .redesFooter img{
-    
-    width: 25px;
+    margin-right: 5vw;
+    width: 2.5vw;
 }
 
-@media (max-width: 768px) {
-    *{
-       max-width: 100%;
-       margin: auto;
+@media (max-width: 820px) {
+
+    /*
+    quite el meter nada en asteriscos y uso del initiañ para resetear atributos que dice en 
+    resoluciones superiores pero no queria que se aplicasen aqui, me lo dijo mi amigo
+    y ya lo demas me explico por encima como usar las herramientas de desarrollador
+    para ver exactamente que era lo que estaba afectando a los bloques donde ir y demas
+    y la verdad que un paseo ya con eso, lo unico el navegador me gustaria que estuviese en un cuadrado
+    y que al presionar se desplegase pero no tengo ni idea de hacerlo y no encontre nada
+
     
+    */
+    
+    /*
+    cambiado con lo visto el martes, quedo pocho los viewheigh y width del main
+    en la media y los ajuste, dos display column a los dos primeros bloques el segundo con el reverse para poner primero la imagen
+    y el footer no me acordaba cual era el aireaba mas a todos los lados, parece que era el evenly el arround 
+    los margenes del medio es la suma del margen del item medio mas item del lado
+    y el beetwen dejara uno en el medio y los otros al lateral, el resto ni los probe porque no me sirven
+    asiq creo que era el evenly
+    y alineamiento de texto al medio en el segundo bloque para centrar todo ez.
+    
+    
+    */
+
+    header{
+    flex-direction: column;
     }
-   
-    .wrapper {
+    .divHeader{
+    margin-top: 3vh;
+    }
+    .divHeader img{
+        
+        width: 30vw;
+    }
+
+    .wrapper{
+        flex-direction: column-reverse;
       
-       flex-direction: column;
-       align-items: center;
-
-        
     }
-    .section1{
+    .wrapper img{
+        width: 50vw;
+      
+    }
+
+    .section1Text{
         text-align: center;
-        background-color: black;
-        
+    }
+    .wrapper button{
+        margin-top: 3vh;
+        width: 40vw;
     }
 
-    .section1Text {
-     
+    footer ul{
+    justify-content: space-evenly;
+    margin-top: 7vh;
+       
     }
+    .redesFooter img {
+        width: 8vw;
 
-    .section1Img img {
-   
-        margin-top: 50px;
-    }
 
-    .section1Text button {
-        font-size: 18px; /* Tamaño de fuente ligeramente más pequeño */
     }
+       
+
+    
+    
 }
