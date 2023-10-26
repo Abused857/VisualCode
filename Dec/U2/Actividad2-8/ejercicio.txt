@@ -1,0 +1,190 @@
+<button type="button" onclick="validarFormulario()">Verificar</button>
+
+boton al que le hemos añadido el atributo onclick el cual al presionar dicho boton lanzara una funcion que se llama validarFormulario.
+
+lo primero que se hara al lanzar esta expresion sera recoger el valor del campo de cada input que tenga nuestro formulario y lo guardaremos en una variable
+
+var nombre = document.getElementById("nombre");
+
+capturo en una variable llamada nombre el valor introducido en el input con id nombre, en este caso no capture el valor introducido en el campo porque queria que pasase
+el input (entero por asi decirlo) en vez de el valor puesto que iba a usar checkvalidity.
+
+function refactorIf(variable, mensaje) {
+          if (!variable.checkValidity()) {
+            fallosArray.push(mensaje);
+          }
+        }
+
+puesto que iba a usar un checkvalidity que valida los requisitos introducidos a la hora de crear el input como required o pattern y devuelve un true o false,
+puesto que tengo varios input que van a  pasar por este proceso, refactorice para tener que escribirlo una vez pasando como parametro el input / field y usar un metodo
+ya creado por defecto de checkvalidity que devuelve un true o false 
+
+ <input
+        type="text"
+        id="direccion"
+        name="direccion"
+        required
+        placeholder="Escribe la dirección"
+        pattern="^[A-ZÑ]{1}[A-Z Ñ0-9ºª/:]*$"
+      />
+
+en caso de que no se hubiese escrito un numero de primer caracter en el campo de direccion el checkvalidity hubiera devuelto un false y se hubiese añadido el mensaje que pase como parametro
+al array de fallos.
+
+function refactorP(pattern, variable, mensaje) {
+          if (!pattern.test(variable)) {
+            fallosArray.push(mensaje);
+          }
+        }
+
+esta funcion sigue el mismo ejemplo de la de arriba pero en vez de trabajar sobre el campo con los requisitos que lo definimos como el required o patter, en esta funcion se trabaja sobre el dato
+introducido el .value si el valor introducido no cumple el patron  definido, probado a traves del metodo test sobre la variabloe devolvia un false y añadia el fallo de mensaje capturado como parametro
+a al array.
+
+ if (fallosArray.length == 0) {
+          bontonEnviar.removeAttribute("disabled");
+          bontonEnviar.style.opacity = "1";
+
+          fallosVerificacion.innerHTML = "";
+        } else {
+          bontonEnviar.setAttribute("disabled", "true");
+          fallosVerificacion.innerHTML = letra + fallosArray.join("<br>* ");
+        }
+
+<button type="submit" id="enviar" style="opacity: 0.5" disabled>
+        Enviar
+      </button>
+      <br />
+
+      <div id="fallosVerificacion" style="color: red"></div>
+
+el boton de enviar estaba con un atributo disabled para que no se pudiese usar y una opacidad por darle estilo.
+
+tras todas las comprobaciones si nuestro array de fallos esta vacio quitamos el atributo disables a traves de removeAtribuite al botonenvia (capturado el boton a traves del get Element)
+y se habilitadaba y se podia enbviar.
+
+Si no al valor capturado del div a traves del innerHTML le metemos a machete que escriba el array y junte cada hueco del array copn un salto de linea y que empiece con el asterisco
+
+nombreInput.addEventListener("blur", () => validarCampo(nombreInput, s1, patternMayu));
+
+metodo que se aplica sobre una variable, en este caso es un blur que hace que al perder el foco el campo pase algo, hay otro como change y onclick que no hemos usado aun.
+
+pues a esta variable le añadimos un evento de cambio de foco el cual llamara a una funcion anonima que lo que sirve es para llamar directamente a ala funcion pasando los parametros de la funcionvalidarCampo
+ademas el eventlistenner en conjunto con funcion anonima hace un encapsulamiento de las variables que recibe, esto quiere decir que si tengo un generador de formularios
+y cada campo que se genera se llama input, esta variable distinguira los requisitos asignados al primer input de los requisitos designados a los siguientes inputs, hace un encapsulamientos de losparametros
+recibidos.
+
+function validarCampo(input, mensaje, pattern) {
+          //puesto que esta function se va a usar en todas las que quiran
+          //mayusculas, me parece mas correcto hacer aqui el uppercase
+
+          //aunque sean numeros lo traga igual asiq
+          //ademas que creo que en una base de datos siempre se guarda en mayusculas para evitar error
+          input.value = input.value.toUpperCase();
+            if (pattern.test(input.value)) {
+              input.classList.remove("invalid");   
+            } else { 
+                input.classList.add("invalid");
+                input.value = "";
+                input.placeholder = mensaje;
+            }
+        }
+
+Esta funcion hace lo que debe pero habria ido mejor haber capturado los datos de los campos como value para no hacerlo dentro de la funcion.
+La primera linea da al valor del campo introducido que todo sea mayusculas. con el toUpperCase
+luego comprueba la variable en mayusculas con el pattern introducido si sale false se le añade una clase a ese campo la cual esa clase sin mas pone el recuadro en rojo.
+
+si sale true que no se le deje con la marca roja en caso de que la tuuviese.
+
+function validarVia(input) {
+          if (input.value == "") {
+          input.classList.add("rojo");
+          } else {
+          input.classList.remove("rojo");
+          }
+        }
+
+es lo mismo que el anterior pero la manera de conseguirlo era distinta puesto que era una checkbox
+
+function addForm()
+
+if (inputA.trim() == "" || patternA.trim() == "") {
+        alert("Hay que rellenar los dos campos no pueden estar vacios");
+        return; 
+    }
+
+elimino espacios vacios de la variable y veo que no este validarCampo
+
+const isRequired = document.getElementById("check").checked;
+
+capturo true o falso si el check box esta seleccionado
+
+const inputI = document.createElement('input');
+
+metodo para crear elementos en este caso un campo input.
+
+ inputI.type = "text";
+    inputI.value = "";
+    inputI.placeholder = "Pattern: " + "\\" + patternA + "\\";
+
+asignacion de atributos a este campo creado, como que sea de tipo texto, que tenga un valor interno vacio por defecto y que tenga de place holder pues el patron introducido que se capturo en una variable
+
+const botonAbajo = document.createElement(`button`);
+
+lo mismo pero creo un boton.
+
+botonEliminar.setAttribute("onclick","remove(this)");
+    botonEliminar.textContent = "Eliminar";
+    botonEliminar.type = `button`;
+
+asignacion de atributos, el primero hace que al presionar (onclick) se active la funcion remove el (this) hace referencia que se aplique solo sobre ese botones unamanera
+ de encapsular la variable y hacerla distinta del resto puesto que se pueden crear tantos botones eliminar como se quiera
+ el textcontent es escribir sobre la variable el contenido que quieres que muestre en este caso se vera un boton eliminar
+ si fuese una p el objeto creado, el text content sera el parrafo que veamos dentro de la p.
+
+ if (isRequired) {
+        inputI.required = true;
+    }
+
+añadimos al campo en caso de sea true esta variable el atributo required
+
+
+divContainer.appendChild(labelL)
+
+hacemos que cuelgue algo, es como crear un hijo del padre, en este caso a nuestra variable divContainer que es un div, hacemos que dentro de el tenga un labelL
+<div>
+    <Label>Hola</label>
+</div>
+ademas el label que creamos tendria un textcontent de hola
+
+forma.appendChild(divContainer);
+
+moveriamos el div anterior con sus hijos a que cuelgue de un form por lo cual el div pasaria a estar dentro de un form
+
+const mensaje = `El pattern para validar es ${patternA}`;
+
+${} forma de mostrar valores de variables dentro de un texto comentado en `` con "" no serviria
+
+
+function remove(button) {
+            const taskItem = button.parentNode; 
+            const form = document.getElementById('lista-form');
+            form.removeChild(taskItem);
+        }
+
+parentnode coge un escalon por encima, en el ejemplo anterior label parentnode seria el divContaner por tanto en este ejemplo el taskItem habria sido el divContainer
+en este ejemplo del boton tambien seria el div
+como el boton tenia el this a ese boton que hace referencia el this borramos del formulario el bloque donde esta contenido la estructura seria la siguientes
+
+<form>
+    <div>
+        <boton>Eliminar</label>
+    </div>
+
+<form>
+
+taskItem seria el div
+
+form el formulario
+
+boro del formulario el taskitem(div)
