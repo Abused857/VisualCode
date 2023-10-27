@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .rojo{
+
+            border: 5px red solid;
+
+        }
+    </style>
+</head>
+<body>
+    
+    <form>
+
+        <label>Añade el campo: </label>
+        <input type = "text" id = "input" name = "field">
+        <br>
+        <br>
+        <label>Añade el patter: </label>
+        <input type ="text" id ="pattern" name ="pattern">
+        <br>
+        <br>
+        <label>Required: </label>
+        <input type ="checkbox" id ="required" name ="pattern">
+        </form>
+        <br>
+        <br>
+        <button type ="button" onclick= addCampo()>Añadir campo</button>
+        <br>
+        <br>
+        <form id = "formNuevo"></form>
+
+    <script>
+
+        function addCampo(){
+
+            const inputA = document.getElementById(`input`).value;
+            const patternA = document.getElementById(`pattern`).value;
+            const isRequired = document.getElementById(`required`).checked;
+            const forma = document.getElementById(`formNuevo`);
+
+
+            const inputI = document.createElement(`input`);
+            const labelI = document.createElement(`label`);
+            const divI = document.createElement(`div`);
+            const eliminarI = document.createElement(`button`)
+            const arribaI = document.createElement(`button`)
+            const abajoI = document.createElement(`button`)
+
+            if (isRequired) {
+                inputI.required = true;
+            }
+
+            inputI.placeholder = "pattern: " + patternA;
+            inputI.type = "text";
+            inputI.value = "";
+            inputI.pattern = patternA;
+            labelI.textContent = inputA;
+
+            eliminarI.textContent = "Eliminar";
+            eliminarI.setAttribute(`onclick`, `remove(this)`);
+            eliminarI.type= `button`;
+
+            arribaI.textContent = `Mover Arriba`;
+            arribaI.setAttribute(`onclick`, `arriba(this)`);
+            arribaI.type = `button`;
+
+            abajoI.textContent = `Mover Abajo`;
+            abajoI.setAttribute(`onclick`, `abajo(this)`);
+            abajoI.type = `button`;
+            
+            divI.appendChild(labelI);
+            divI.appendChild(inputI);
+            divI.appendChild(eliminarI);
+            divI.appendChild(arribaI);
+            divI.appendChild(abajoI);
+            forma.appendChild(divI);
+
+            inputI.addEventListener(`blur`, ()=> validarCampo(inputI))
+            
+            document.getElementById(`input`).value = "";
+            document.getElementById(`pattern`).value = "";
+            document.getElementById(`required`).checked = false;
+      
+
+        }
+
+        function validarCampo(input){
+            const patternReg = new RegExp(input.pattern);
+
+            if(!patternReg.test(input.value)){
+
+                input.classList.add(`rojo`);
+                input.value = "";
+                input.placeholder = "Error: " + patternReg;
+                
+
+
+            }
+            else{
+                input.classList.remove(`rojo`);
+            }
+
+
+        }
+
+        function remove(button) {
+            const taskItem = button.parentNode; 
+            const form = document.getElementById('formNuevo');
+            form.removeChild(taskItem);
+        }
+
+
+
+        function arriba(button) {
+      var elemento = button.parentElement; 
+      const form = document.getElementById('formNuevo');
+      var indice = Array.prototype.indexOf.call(form.children, elemento); 
+
+      if (indice > 0) {
+        form.insertBefore(elemento, form.children[indice - 1]);
+      }
+    }
+
+    function abajo(button) {
+      var elemento = button.parentNode;
+      const form = document.getElementById('formNuevo');
+      var indice = Array.prototype.indexOf.call(form.children, elemento);
+
+      if (indice < form.children.length - 1) {
+        form.insertBefore(elemento, form.children[indice + 2]);
+      }
+    }
+
+       
+
+
+    </script>
+
+</body>
+</html>

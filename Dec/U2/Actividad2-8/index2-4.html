@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario Actividad</title>
+  </head>
+  <body>
+    <form id="formulario">
+      <label for="nombre">Nombre:</label>
+      <input
+        type="text"
+        id="nombre"
+        name="nombre"
+        placeholder="Escribe tu nombre"
+        required
+        autofocus
+        pattern="^[A-ZÑ]{1}[A-Z Ñ]*"
+      />
+
+      <br />
+      <br />
+      <label for="apellido">Apellido:</label>
+      <input
+        type="text"
+        id="apellido"
+        name="apellido"
+        placeholder="Escribe tu apellido"
+        required
+        pattern="^[A-ZÑ]{1}[A-Z Ñ]*"
+      />
+
+      <br />
+      <br />
+
+      <label for="email">Email:</label>
+      <!--Una dirección de correo electrónico válida debe cumplir las siguientes condiciones:
+
+Contener "@"
+La longitud de la parte local (antes del símbolo "@") debe estar comprendida entre 1 y 64 caracteres.
+La longitud de la parte de dominio (después del símbolo "@") debe estar comprendida entre 4 y 255 caracteres.
+La longitud total debe ser menor o igual a 256 caracteres.
+La parte local y la parte de dominio deben comenzar por una letra o dígito y no deben contener dos símbolos "." consecutivos
+La parte local y la parte de dominio pueden contener letras, números y los caracteres ".", "_" y "-".
+La parte del dominio debe terminar con un símbolo "." y entre dos y cuatro caracteres alfabéticos.
+El chequeo de registros DNS con la parte del dominio debe ser de tipo "A" o "MX".-->
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Escribe tu email"
+        required
+        pattern="^[a-zA-Z0-9._%+-]{1,64}+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+      />
+
+      <br />
+      <br />
+
+      <label for="tipoVia">Tipo de Vía:</label>
+      <select type="text" id="tipoVia" name="tipoVia" required> 
+        <!-- Disable la deshabilita de la lista
+            Selected la deja seleccionada para que
+             se muestre
+            hidden la esconde al desplegar -->
+
+        <option value="" disabled selected hidden>Elige una opción</option>
+        <option value="calle">Calle</option>
+        <option value="avenida">Avenida</option>
+        <option value="via">Vía</option>
+      </select>
+
+      <br />
+      <br />
+
+      <label for="direccion">Dirección Completa:</label>
+      <input
+        type="text"
+        id="direccion"
+        name="direccion"
+        required
+        placeholder="Escribe la dirección"
+        pattern="^[A-ZÑ]{1}[A-Z Ñ0-9ºª/:]*$"
+      />
+
+      <br />
+      <br />
+
+      <label for="tlf">Teléfono:</label>
+      <input
+        type="tel"
+        id="telefono"
+        name="tlf"
+        required
+        placeholder="Teléfono: 9 dígitos"
+        pattern="^[6]{1}[0-9]{8}"
+      />
+
+      <br />
+      <br />
+
+      <label for="dni">Dni:</label>
+      <input
+        type="text"
+        id="dni"
+        required
+        placeholder="Dni: 8 numeros y una letra"
+        pattern="^[0-9]{8}[A-Za-z]{1}"
+      />
+
+      <br />
+      <br />
+
+      <button type="button" onclick="validarFormulario()">Verificar</button>
+      <br />
+      <br />
+      <button type="submit" id="enviar" style="opacity: 0.5" disabled>
+        Enviar
+      </button>
+      <br />
+
+      <div id="fallosVerificacion" style="color: red"></div>
+    </form>
+
+    <script>
+      //funcion que va a verificar todos los campos del formulario
+      //en caso de que no se cumpla una verificacion
+      //se añadira  un mensaje de eror a un array
+      //al finalizar la verificacion si el array de fallos es mayor que 0 se mostrara
+      //si no hay fallos que s emuestre el boton enviar
+
+      function validarFormulario() {
+        var nombre = document.getElementById("nombre");
+        var apellido = document.getElementById("apellido");
+        var email = document.getElementById("email");
+        var emailHostia = email.value;
+        var tipoVia = document.getElementById("tipoVia");
+        var direccion = document.getElementById("direccion");
+        var direccionHostia = direccion.value;
+        var telefono = document.getElementById("telefono");
+        var dni = document.getElementById("dni");
+
+        var fallosVerificacion = document.getElementById("fallosVerificacion");
+        var bontonEnviar = document.getElementById("enviar");
+
+        var fallosArray = [];
+        var letra = "*";
+        var vago =
+          "esta vacío o no cumple con los requisitos(letras mayusuculas).";
+
+        function refactorIf(variable, mensaje) {
+          if (!variable.checkValidity()) {
+            fallosArray.push(mensaje);
+          }
+        }
+
+        var patternDir = /^[A-ZÑ]{1}[A-Z Ñ0-9ºª/:]*$/;
+        var patternE = /^[a-zA-Z0-9._%+-]{1,64}@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+        function refactorP(pattern, variable, mensaje) {
+          if (!pattern.test(variable)) {
+            fallosArray.push(mensaje);
+          }
+        }
+
+        refactorP(patternDir, direccionHostia, "La dirección " + vago);
+        refactorP(patternE, emailHostia, "Introduce un email válido." + vago);
+
+        refactorIf(nombre, "El nombre " + vago);
+        refactorIf(apellido, "El apellido " + vago);
+        refactorIf(tipoVia, "Selecciona una vía.");
+        refactorIf(
+          telefono,
+          "Tlf empieza por 6 y debe tener 9 digitos en total, el teléfono de casa o de la oficina fijo nos da igual, solo móvil."
+        );
+        refactorIf(dni, "Dni con 8 dígitos y 1 letra ");
+
+        if (fallosArray.length == 0) {
+          bontonEnviar.removeAttribute("disabled");
+          bontonEnviar.style.opacity = "1";
+
+          fallosVerificacion.innerHTML = "";
+        } else {
+          bontonEnviar.setAttribute("disabled", "true");
+          fallosVerificacion.innerHTML = letra + fallosArray.join("<br>* ");
+        }
+      }
+    </script>
+  </body>
+</html>

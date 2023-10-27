@@ -146,7 +146,7 @@ a la hora de hacer esto daba por hecho que iba a salir mal porque no estoy
 haciendo referencia al input en especifico y el evento no iba a tener manera de saber que input quiero que haga el blur
 pero funciono y aunque en mi cabeza tenia logica al principio luego pense porque es asi y no hace
 falta referenciarlo con un this o algo por el estilo para que sepa a que input tiene que lanzar el blur y 
-
+`regunte a chatgpt ya por curiosidad
 
 Usando una función anónima dentro del event listener
 se crea un cierre (closure) que "captura" las variables locales en ese momento, lo que permite que cada 
@@ -168,10 +168,7 @@ Un cierre, también conocido como "closure" en inglés, es un concepto fundament
 
 En otras palabras, un cierre permite que una función acceda y conserve su entorno en el momento en que se creó. Esto puede ser útil para mantener el estado y los datos relacionados con la función, incluso cuando la función ya no se está ejecutando.
 
-basicamente que hace el this por defecto la funcion anonima, como si se repplicase esta funcion por cada variable
-de tal manera que el primer campo llamado inputI se encapsulara en el evento
-y aunque cree otro campo, en este segundo campo se volvera a encapsular el input Y CUALQUIER VARIABLE QUE PASEMOS
-de tal manera que cada eventlistner hace referencia a cada inputI bueno saberlo
+basicamente que hace el this por defecto la funcion anonima, bueno saberlo
 
 
 */
