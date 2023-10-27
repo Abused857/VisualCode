@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejemplo de Página Web</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        .container {
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 5px 0;
+            color: #555;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mi Página Web</h1>
+
+        <!-- Botón para obtener la lista desde Tomcat -->
+        <button onclick="obtenerListaTomcat()">Obtener Lista de Tomcat</button>
+        <ul id="listaTomcat"></ul>
+
+        <!-- Formulario para agregar un objeto a Node.js -->
+        <form id="formularioNodeJS">
+            <input type="text" id="nombre" placeholder="Nombre">
+            <button type="submit">Agregar a Node.js</button>
+        </form>
+    </div>
+
+    <script>
+        function obtenerListaTomcat() {
+            // Hacer una solicitud GET a Tomcat (debes reemplazar la URL con la correcta)
+            fetch('http://tu-servidor-tomcat/tu-ruta-en-tomcat')
+                .then(response => response.json())
+                .then(data => {
+                    const listaTomcat = document.getElementById('listaTomcat');
+                    listaTomcat.innerHTML = '';
+                    data.forEach(objeto => {
+                        const li = document.createElement('li');
+                        li.innerText = `ID: ${objeto.id}, Nombre: ${objeto.nombre}`;
+                        listaTomcat.appendChild(li);
+                    });
+                });
+        }
+
+        document.getElementById('formularioNodeJS').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            // Hacer una solicitud POST a Node.js (debes reemplazar la URL con la correcta)
+            fetch('http://tu-servidor-nodejs/tu-ruta-en-nodejs', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nombre })
+            })
+                .then(() => {
+                    // Limpia el campo de nombre después de agregarlo
+                    document.getElementById('nombre').value = '';
+                    obtenerListaTomcat(); // Vuelve a obtener la lista después de agregar un objeto
+                });
+        });
+    </script>
+</body>
+</html>
