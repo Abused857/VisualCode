@@ -25,6 +25,11 @@ margin-left: 1em;
 <script>
 
 var ventanaAbierta = false;
+var ventanaAbiertaPrimero = false;
+var modal = false;
+
+
+
 function ventana(a, b){
 
 
@@ -35,6 +40,10 @@ function ventana(a, b){
         mi_ventana = window.open("", "", `menubar=yes,location=yes,resizable=yes,scrollbars=yes,width=${a},height=${b} left = 600`);
         mi_ventana.document.write("Esta es una ventana nueva");
         ventanaAbierta = true;
+        //que suceda algo cuando se cierre la ventana modal
+        mi_ventana.addEventListener("unload", function(){
+            cerrar();
+        })
 
          //captura de ids
         const divMover1 = document.getElementById(`divVentanaMover`);
@@ -155,6 +164,8 @@ function ventana(a, b){
 
 
     }
+    ventanaAbierta = true;
+    ventanaAbiertaPrimero = true;
 
    
    
@@ -165,7 +176,7 @@ function ventana(a, b){
 //no me paro a explicar nada
 
 function opcionVentana(){
-    if (ventanaAbierta === false){
+    if (ventanaAbierta === false && ventanaAbiertaPrimero === false){
 
         const divCrear = document.getElementById(`divVentanaCrear`);
         
@@ -227,10 +238,10 @@ function opcionVentana(){
         
 
 
-
+        ventanaAbiertaPrimero = true;
 
     }
-
+  
 
 
 }
@@ -291,6 +302,7 @@ function validarCampo(input, texto){
 //la funcion de cerrar tiene que dejar todo de fabrica para volver a empezar de cero eliminando toda cosa creada dentro eso quiere decir que se elimine
 
 function cerrar() {
+    
     if (ventanaAbierta === true) {
 
         //me da pereza ir escribiendo divMover1.removeChild() y metiendo todos los valores 
@@ -304,12 +316,14 @@ function cerrar() {
         divSizeCerrar.innerHTML="";
 
         const divBorrar1 = document.getElementById(`divBorrarTodo`);
-        divBorrar1.innerHTML="";
-
+       //esto por usarlo ya lo que loe scribi
+        eliminarHijo(divBorrar1);
         mi_ventana.close();
         
         ventanaAbierta = false;
+        ventanaAbiertaPrimero = false;
     }
+    
 
     //dando al control espacio vi la opcion de firstChild y pense que si la meto en un bucle mientras sea true 
     //se deberia de borrar todos los hijos, pues si
