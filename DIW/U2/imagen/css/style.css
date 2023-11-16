@@ -1,0 +1,39 @@
+
+.main-container{
+    display: flex;
+    width: 40%;
+    height: 40%; 
+}
+.frogg-container  {
+    height: 210px;
+    width: 350px;
+    position: absolute;
+   flex-direction: column-reverse;
+   flex-wrap: wrap-reverse;
+    display: flex;
+    justify-content: center;
+}
+.frogg-container img {
+    width: 23%;
+    height: 80%;
+    position: relative;
+    z-index: 1;
+   
+  
+
+}
+.leaf-container{
+    height: 210px;
+    width: 350px;
+    justify-content: center;
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    flex-direction: column-reverse;
+}
+.leaf-container img {
+    width: 23%;
+    height: 70%;
+    position: relative;
+}
+
