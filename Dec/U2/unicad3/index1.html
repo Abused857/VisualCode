@@ -49,11 +49,7 @@
             <input type="text" id="editTaskInput">
             <input type="date" id="dateInputEdit">
             <!--Input para meter la fecha, typo date ademas de dentro del edit ya si que quiero el combobox para seleccionar el estado-->
-            <select id="selectEstado">
-                <option>To Do</option>
-                <option>Doing</option>
-                <option>Done</option>
-            </select>
+            
             <button class="btn" onclick="saveTask()">Guardar</button>
             <button class="btn" onclick="cancelEdit()">Cancelar</button>
         </div>
@@ -80,6 +76,7 @@ en cambio otras partes del codigo me han dado bastantes ideas como el displayyas
      
         */
        //arrayd e las tareas
+      
         var tasks = [];
         //array de las dates
         var dates = [];
@@ -141,16 +138,14 @@ en cambio otras partes del codigo me han dado bastantes ideas como el displayyas
             //en dates el date value introducido y guardado en dateInputValue , lo añadimos al array tambien
             //toda tarea empieza con to do, asi que simplemente añadimos el string al array del estado asociado a la tarea
             tasks.push(taskText);
-            
-            dates.push(dateInputValue);
             estado.push("To Do");
+            dates.push(dateInputValue);
             console.log(taskInput.value);
             console.log(dateInput.value);
             //limpiamos campos
             taskInput.value = "";
             dateInput.value ="";
             
-
             displayTasks();
         }
 
@@ -175,12 +170,75 @@ en cambio otras partes del codigo me han dado bastantes ideas como el displayyas
             for (let i = 0; i < tasks.length; i++) {
                 const li = document.createElement("li");
                 li.className = "task";
+               /*
+               ell primer select creo un id para cada linea con el i, a la vez que lanzo la funcion estado change con el triger on change
+               cuando se elige otro valor ene l combo box, ademas aprovecho la i para pasarla como paramettro y cogerlo como index
+
+               en la segunda linea hago el if que encontre que no tenia ni idea de hacerlo dentro un if
+               por lo visto es una operacion ternaria pero funciona como un if al final
+               si la posicion del estado i del array coincide con to do, si es true, el option se pondra en selected y se fijara como primera opcion
+               los dos puntos signoifican el si es false, pues que nada
+               si es doing la posicion en el array se pondra en selected esa option si no, pues nada y asi cone  done tambien
+               mi primera idea era hacer un eventlistener de onchange pero me estaba liando, iba a hacer un create element para el select
+               y los options e iba a compararlos con los if estado i === to do que haga x if es igual a doign haga tal y asi
+               luego pense que en el examen puedes darnos un inner y si voy jsuto de tiempo no voy a estar a borrar todo y hacerlo con create element asi que mire como
+               hacer id dentro de un inner 
+               
+               
+
+               extraido de la documentacion de javascript 
+
+               Operador condicional (ternario)
+                    El operador condicional (ternario) es el único operador en JavaScript que tiene tres operandos.
+                     Este operador se usa con frecuencia como atajo para la instrucción if.
+                    Sintaxis
+                    condición ? expr1 : expr2
+                    Parámetros
+                    condición
+                    Una expresión que se evalúa como true o false.
+
+                    expr1, expr2
+                    Expresión con valores de algún tipo.
+
+                    Descripción
+                    Si la condición es true, el operador retorna el valor de la expr1; de lo contrario, 
+                    devuelve el valor de expr2. Por ejemplo, para mostrar un mensaje diferente en función del valor de la variable isMember, 
+                    se puede usar esta declaración:
+
+                    JS
+                    Copy to Clipboard
+
+                    "La Cuota es de:  " + (isMember ? "$2.00" : "$10.00");
+
+                    condicion -> ${estado[i] === `To Do`
+                    si es true -> ?;  si lo es -> atributo `selected`
+                   si es  false -> :  que haga nada -> ``
+
+
+
+
+               
+               */
                 li.innerHTML = `
-                    ${tasks[i]} ${dates[i]} ${estado[i]}
+
+                
+                <select id="selectEstado${i}" onchange="estadoChange(${i})">
+
+                    <option  ${estado[i] === `To Do` ? `selected` : ``}>To Do</option>
+                    <option  ${estado[i] === `Doing` ? `selected` : ``}>Doing</option>
+                    <option  ${estado[i] === `Done` ? `selected` : ``}>Done</option>
+                    
+                </select>
+                    ${tasks[i]} ${dates[i]}
                     <button class="btn" onclick="editTask(${i})">Editar</button>
                     <button class="btn" onclick="deleteTask(${i})">Eliminar</button>
                 `;
+             
+
                 taskList.appendChild(li);
+               
+      
+            
              
             }
           
@@ -196,6 +254,22 @@ en cambio otras partes del codigo me han dado bastantes ideas como el displayyas
         
         
         */
+        function estadoChange(index) {
+
+            /*
+            esta funcion no tiene nada de espacial
+            como el id delselect
+            y la linea que tiene mostrada (value del select)
+            se la agrego al estado usando lel index para seleccionar la posicion
+            */
+   
+            const estadoEdit = document.getElementById(`selectEstado${index}`);
+            estado[index] = estadoEdit.value;
+            displayTasks();
+        }
+
+
+
         function editTask(index) {
             editIndex = index;
             const editTaskInput = document.getElementById("editTaskInput");
@@ -235,7 +309,7 @@ en cambio otras partes del codigo me han dado bastantes ideas como el displayyas
             const editedText = editTaskInput.value.trim();
 
             //cojo el campo del select
-            const estadoEdit = document.getElementById("selectEstado");
+            
             
 
             if (editedText === "" ) return;
@@ -247,7 +321,7 @@ en cambio otras partes del codigo me han dado bastantes ideas como el displayyas
             */
             tasks[editIndex] = editedText;
             dates[editIndex] = dateInputValue;
-            estado[editIndex] = estadoEdit.value;
+            
             //refresco los valores cosa que da igual en verdad puesto que no tengo return en el dateinput por ejemplo en caso de estar vacio
             //seria la gracia  if (editedText === "" || date....) return; lo voy aponer porque no
             editTaskInput.value = "";
