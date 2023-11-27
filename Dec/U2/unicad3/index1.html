@@ -233,6 +233,7 @@ en cambio otras partes del codigo me han dado bastantes ideas como el displayyas
                     <button class="btn" onclick="editTask(${i})">Editar</button>
                     <button class="btn" onclick="deleteTask(${i})">Eliminar</button>
                 `;
+              
              
 
                 taskList.appendChild(li);
@@ -427,7 +428,7 @@ cuando deje de serlo pasara a false el control y se rompera el bucle
             //funciona comparandolo a machete
             //el mismo ejercicio de ordenar el array con numeros solo que aqui tenemos que ordenar tres arrays a la vez
             // pues aplicamos los cambios a la vez no se, no le veo ningun misterio a esto mas que equivocacion a la hora de escribir como me paso a mi
-            if (copiaDates[i] < copiaDates[i - 1]) {
+            if (copiaDates[i] > copiaDates[i - 1]) {
 
                 var guardoTask = copiaTask[i];
                 var guardoDate = copiaDates[i];

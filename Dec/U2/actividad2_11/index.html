@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Actividad 2-11</title>
+</head>
+<body >
+
+    <h1>Publica tu post</h1>
+
+    <form>
+
+        <label>Texto:</label>
+        <input type="text" id="texto" >
+     
+        <input type="date" id="fecha" name="fecha">
+
+        <label>Imagen:</label>
+        <input type="text" id="imagen">
+
+        <button id = "enviar" type="button">Enviar</button>
+
+    </form>
+
+    <!--
+    padre-posts sera donde cuelguen todos los post los cuales a su vez estaran dentro de un div tambien
+    la modal esta copiada directamente,  los tres input que necesitamos de post fecha y la imagen
+    a su vez creamos un campo img para que muestre la img actual que esta usando
+    y dejamos en display none la imagen para ver el cambio para que no nos salga un recuadro pocho mientras no se haya disparado el blur
+    a su vez dejamos creado el p sin contenido que llevara la leyenda de la imagenafter cuando se dispare el blur
+
+
+    -->
+
+    <div id="padre-posts"></div>
+
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h2>Editar Tarea</h2>
+            <input type="text" id="textModal">
+            <input type="date" id="dateModal">
+            <input type="text" id="imagenModal">
+
+            <button class="btn" onclick="saveTask()">Guardar</button>
+            <button class="btn" onclick="cancelEdit()">Cancelar</button>
+
+            <br>
+            <p>Imagen previa</p>
+            <img id ="srcModal">
+            
+            <p id = "imgAfter"></p>
+            <img id ="srcModalAfter">
+            
+    
+            
+        </div>
+    </div>
+
+<script>
+
+    /*
+    Primero que todo aunque podria copiar y pegar tu ejercicio entero y cambiar cuatro cosas
+    copiare lo que me de pereza, y aprovechando que hay que hacer el ejercicio desde cero, evitare usar el innerHTML y hare el create element que me resulta mas comodo
+    a su vez aprovechare para usar el foreach, que estoy viendo que se usa igual que en java
+
+    creacion de variables
+    jpg para añadir la extension .jpg cuando se añadan las rutas de las imagenes
+    objetoPost que usare para guardar el valor del objeto que estoy editando para cuando demos a guardar, se modifique  el objeto que estoy editando, apunto directamente a la posicion del array que quiero modificar
+    aunque todos se llamen objetoPost no son iguales, es como si en vez de objetoPost hubiese creado persona, obviamente cada persona es diferente pues esta variable va a ser para apuntar a una persona en especifico
+    
+    posts, va a ser mi array donde guarde todos lo objetos
+    dateinputValue, guardara el valor de la fecha para pasarlo al objeto, tanto a la hora de crearlo como editarlo,
+
+    */
+    const jpg = ".jpg";
+    var objetoPost;
+    var posts = [];
+    var dateInputValue;
+    //cojo los campos de date y los guardo en una variable para hacerles el event cuando cambien
+    const dateInput = document.getElementById(`fecha`);
+    const dateInputEditValue = document.getElementById("dateModal");
+
+    //cojo el boton y a la variable la hago que dispare la funcion newPost cuando se presione
+    const buttonEnviar = document.getElementById(`enviar`);
+    buttonEnviar.addEventListener(`click`, ()=> newPost())
+
+    //guardo en dateInputValue mediante el event change coje el value del campo de fecha osea la fecha y la guardo en la variable,para cuando tenga que añadirsela al objeto,
+    //ya sabewr donde la tengo guardada
+    dateInput.addEventListener("change", ()=> {
+
+        dateInputValue = dateValue(dateInputValue, dateInput)
+    })
+
+    dateInputEditValue.addEventListener("change", ()=> {
+           
+        dateInputValue = dateValue(dateInputValue, dateInputEditValue)
+    })
+
+//la funcion que devuelve el valor de la fecha
+function dateValue(input, inputValue){
+
+input = inputValue.value;
+return input;
+
+}
+
+/*
+cojo el campo del texto y la imagen, miro que no esten vacios(buyeno miro, lo copie de lo tuyo xD), que no haga nada,
+pasado ese filtro creo mi objetoPost y le añado los atributos que tendra y sus valores, una vez creado lo meto en el array y lanzo el refresco de los post para que se muestre
+
+*/
+function newPost(){
+
+    const inputText = document.getElementById(`texto`);
+    const textValue = inputText.value.trim();
+
+    const inputImage = document.getElementById('imagen');
+    const imageValue = inputImage.value.trim();
+
+    if (textValue === "" || dateInput.value === "" || imageValue === "") return;
+    
+    const objetoPost = {
+
+            texto: textValue,
+            fecha: dateInputValue,
+            imagen: imageValue,
+    }
+
+    posts.push(objetoPost);
+
+    displayTask();
+
+
+}
+
+/*
+El mayor cambio respecto al ejercicio anterior supongo
+
+*/
+function displayTask() {
+
+    ordenarBurbuja();
+
+    //cojo mi div que contendra todo
+    const padrePosts = document.getElementById('padre-posts');
+
+   //lo limpio
+    padrePosts.innerHTML = '';
+
+   /*
+    Lo explica tan claro la documentacion de javascript que la pego aqui
+   // Using only Current Element and Index
+    array.forEach((currentElement, index) => { /* ... *./ })
+    index: index is an optional argument that carries the index of the currentElement.
+   
+   
+    lo dicho hago un foreach al array post, necesito un elemento que itere sobre el y cojiendo los valores del objeto en cuestion en cada iteracion
+    , lo he llamado objetoPost por comodidad, aunque lo podria llamar como quisiera, el index es opcional pero el editar y eliminar vana  anecesitar indice asiq, lo añadir
+    debido a que en el ejercicio anterior tuve mala experiencia encapsulandolo en un event con funcion anonima y no funcionaba como esperaba, asique, dejare ese metodo
+    para comprobaciones como todo en mayusculas en los input y usare el index en su lugar.
+   */
+    posts.forEach((objetoPost, index) => {
+
+        //creo el div que contendra todos los valores de cada objeto, por tenerlo ordenado tal que asi
+        /*
+        <div PADREE>
+
+            <div HIJO></div>
+            <div HIJO></div>
+            <div HIJO></div>
+            <div HIJO></div>
+   
+        </div>
+        
+        */
+        const hijoPadre = document.createElement('div');
+
+
+        //creo un label con el valor en el objetoPost en el tag texto, que seia como la descripcion del post, o el nombre de la tartea o para lo que se quiera usar este texto
+        const labelInput = document.createElement('label');
+        labelInput.textContent = objetoPost.texto;
+        //se lo añado al div hijo del divpadre
+        hijoPadre.appendChild(labelInput);
+
+        
+        //lo mismo creo un label para que no se pueda modificar con el valor de la fecha del objeto y lo añado al hijo div
+        const labelDate = document.createElement('label');
+        labelDate.textContent = objetoPost.fecha;
+        hijoPadre.appendChild(labelDate);
+
+       
+        //lo mismo, con la diferencia que añado la variable jpg que tiene.jpg en string para simular asi la extension y agregarsela a la ruta
+        const imgRuta = document.createElement('img');
+        const ruta = objetoPost.imagen + jpg;
+        imgRuta.src = ruta;
+        hijoPadre.appendChild(imgRuta);
+
+        //creo el boton editar y aqui ya uso el index del for each que empieza de 0 a n y s elo paso cuando se presione mediante el evento click al a funcion editar
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Editar';
+        editButton.addEventListener('click', () => editTask(index));
+        hijoPadre.appendChild(editButton);
+
+        //lo mismo que con editar creo el de eliminar y con evento click disparo la funcion delete task pasandole el parametro index , osea, su posicion en el array post
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Eliminar';
+        deleteButton.addEventListener('click', () => deleteTask(index));
+        hijoPadre.appendChild(deleteButton);
+
+
+
+        //con todo en la iteracion, se lo agrego al div padre, y que vuelva a empezar la siguiente iteracion
+        padrePosts.appendChild(hijoPadre);
+    })
+}
+
+function editTask(index) {
+    /*
+     extraigo su referencia del array, ya tengo una variable global que apuntara a la direccion de memoria del objeto que entre en el index
+  
+    */
+
+        objetoPost = posts[index];
+        
+         /*
+            cojo el campo de la imagen y cuando cambien la ruta que dispare el evento que la muestre en el modalAfter que tengo en display none,
+            una vez hecho el blur, cojera el value del campo le añadira el jpg que lo tengo globalmente guardado y lo añadira junto con la ruta como valor del .src deltag img
+            hare display block para que aparezca y le añado un texto a la leyenda que tenia vacia en el^*p*
+    
+        */
+        const imgEdit = document.getElementById(`imagenModal`);
+        imgEdit.addEventListener(`blur`, ()=>{
+        
+        document.getElementById('srcModalAfter').src = document.getElementById('imagenModal').value + jpg;
+        srcModalAfter.style.display = 'block';
+        
+        document.getElementById('imgAfter').textContent= `Imagen después`;
+
+
+    })
+
+    /*
+    por comodidad para ver que todo iba como queria
+    en los campos quiero que aparezcan los valores del objetos a los que di edit para ver que estoy apuntando bien en lamemoria
+    a su vez doy valor al srcModal al atributo src con la ruta del objeto mas la variable jpg para que muestre la imagen que tiene el objeto cuando se presiono edit
+    
+    
+    */
+    document.getElementById('textModal').value = objetoPost.texto;
+    document.getElementById('imagenModal').value = objetoPost.imagen;
+
+    document.getElementById('srcModal').src = objetoPost.imagen + jpg;
+
+    //y que muestre la ventana modal
+    const editModal = document.getElementById('editModal');
+    editModal.style.display = 'block';
+
+
+}
+
+function saveTask() {
+
+   
+    /*
+    objetoPost soy muy choricero con los nombres, es como dije antes no estoy apuntando a persona, estoy apuntando a una persona que se llama juan en la memoria del array
+    , pues lo mismo pero con objetoPost, estoy modificando el obejto de la memoria que extraje(no extraigo nada en verdad, es el lugar de la memoria del array al que quiero ir) 
+    anteriormente en el edit,  es la  referencia del array que es lo que hice en objetoPost = posts[index]; extraer su referencia
+    
+    
+    
+    */
+
+    //pues le doy sus nuevos valores de los campos
+    objetoPost.texto = document.getElementById('textModal').value;
+    objetoPost.fecha = dateInputValue;
+    objetoPost.imagen = document.getElementById('imagenModal').value;
+    //limpio el resto para que se vea bonito cuando se vuelva a dar a editar, que si no se ve pochete
+    document.getElementById('srcModalAfter').src = "";
+    document.getElementById('imgAfter').textContent = "";
+    document.getElementById('srcModalAfter').style.display = "none";
+
+    //y oculto la ventana modal cuando se de  a guardar
+    const editModal = document.getElementById("editModal");
+    editModal.style.display = "none";
+
+
+    //refresco las tareas
+    displayTask();
+}
+
+function cancelEdit() {
+
+    //copiado del ejercicio anterior, simplemente si se cancela limpiar los campos
+
+            const textModal = document.getElementById("textModal");
+            textModal.value = "";
+
+            const imagenModal = document.getElementById("imagenModal");
+            imagenModal.value = "";
+          
+            dateModal.value = "";
+
+            const editModal = document.getElementById("editModal");
+            editModal.style.display = "none";
+}
+
+function deleteTask(index) {
+    //como al boton le cree con el index y lo paso con el event
+    //borrara su posicion en el array
+    posts.splice(index, 1);
+    displayTask();
+}
+
+function ordenarBurbuja() {
+    //esta funcion se llamara siempre cuando se ejecute displayTask para que se ordene el array antes de pintarse
+    //lo copie y pegue casi
+    
+ var control;
+
+    do { 
+
+        //control de flujo, si no ha habido ningun cambio que se rompa el bucle
+        control = false;
+        
+        //que empiece desde el principio y en caso de que sea menor que su numero siguiente, que se intercambien la posicion
+        //este coje la posicion 0 y si hace falta la mueve hasta el final del array una vez hecho eso se cambia a false y vuelve a entrar en el bucle, vuelve a cojer la primera posicion
+        //y la vuelve a mover en caso de ser necesario, cuando no haya nada que mover se para.
+        for (var i = 0; i < posts.length - 1; i++) {
+    
+            //comparolas fechas de los objetos accediendo a la posicion con i y al tag con el .fecha
+            if (posts[i].fecha < posts[i + 1].fecha) {
+                
+                //guardo el valor de posicion para al hacer swap darselo nuevamente a la posicion i +1
+                var temp = posts[i];
+                posts[i] = posts[i + 1];
+                posts[i + 1] = temp;
+    
+                control = true;
+            }
+        }
+    } while (control);
+}
+
+
+</script>
+    
+</body>
+</html>
