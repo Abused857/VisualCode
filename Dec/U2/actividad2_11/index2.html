@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Actividad 2-11</title>
+</head>
+<body >
+
+    <h1>Publica tu post</h1>
+
+    <form>
+
+        <label>Texto:</label>
+        <input type="text" id="texto" >
+     
+        <input type="date" id="fecha" name="fecha">
+
+        <label>Imagen:</label>
+        <input type="file" id="imagen">
+
+        <button id = "enviar" type="button">Enviar</button>
+
+    </form>
+
+    <!--
+    padre-posts sera donde cuelguen todos los post los cuales a su vez estaran dentro de un div tambien
+    la modal esta copiada directamente,  los tres input que necesitamos de post fecha y la imagen
+    a su vez creamos un campo img para que muestre la img actual que esta usando
+    y dejamos en display none la imagen para ver el cambio para que no nos salga un recuadro pocho mientras no se haya disparado el blur
+    a su vez dejamos creado el p sin contenido que llevara la leyenda de la imagenafter cuando se dispare el blur
+
+
+    -->
+
+    <div id="padre-posts"></div>
+
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h2>Editar Tarea</h2>
+            <input type="text" id="textModal">
+            <input type="date" id="dateModal">
+            <input type="text" id="imagenModal">
+
+            <button class="btn" onclick="saveTask()">Guardar</button>
+            <button class="btn" onclick="cancelEdit()">Cancelar</button>
+
+            <br>
+            <p>Imagen previa</p>
+            <img id ="srcModal">
+            
+            <p id = "imgAfter"></p>
+            <img id ="srcModalAfter">
+            
+    
+            
+        </div>
+    </div>
+
+<script>
+    var objetoPost;
+    var posts = [];
+    var img = ".\\img\\";
+    var dateInputValue;
+    const date = document.getElementById(`fecha`);
+    const dateModal = document.getElementById("dateModal");
+    const enviar = document.getElementById("enviar");
+    enviar.addEventListener("click", ()=> newPost())
+    
+    date.addEventListener("change", ()=> {
+
+        dateInputValue = dateValue(dateInputValue, date);
+  
+    })
+
+
+    dateModal.addEventListener ("change", ()=>{
+        dateInputValue = (dateValue(dateInputValue, dateModal))
+    })
+
+    function dateValue (input, inputValue){
+
+        input = inputValue.value;
+        return input;
+
+    }
+
+    function newPost(){
+
+        const postText = document.getElementById("texto");
+        const postTextValue = postText.value.trim();
+
+        const postImg = document.getElementById("imagen");
+        const postImgValue = postImg.value.trim();
+        const path = extractFilename(postImgValue);
+        alert(path);
+
+        if(postTextValue.value == "" || dateInputValue == "" || postImgValue == "") return;
+
+        const objetoPost = {
+            texto: postTextValue,
+            fecha: dateInputValue,
+            imagen: path
+        }
+
+        posts.push(objetoPost);
+
+            displayTask();
+
+    }
+
+    function displayTask(){
+        ordenarBurbuja();
+
+        const padrePost = document.getElementById("padre-posts");
+
+        padrePost.innerHTML = "";
+
+        posts.forEach((objetoPost, index) => {
+
+            const hijoPadre = document.createElement("div");
+
+            const labelText = document.createElement("label");
+            labelText.textContent = objetoPost.texto; 
+            hijoPadre.appendChild(labelText);
+
+            const labelDate = document.createElement("label");
+            labelDate.textContent = objetoPost.fecha;
+            hijoPadre.appendChild(labelDate);
+
+            const imgInput = document.createElement("img");
+            imgInput.src = img + objetoPost.imagen ;
+            alert(img + objetoPost.imagen);
+            hijoPadre.appendChild(imgInput);
+
+            const editButton = document.createElement("button");
+            editButton.textContent = "Editar";
+            editButton.addEventListener("click", ()=> editTask(index));
+            hijoPadre.appendChild(editButton);
+
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Eliminar";
+            deleteButton.addEventListener("click", ()=> eliminarTask(index));
+            hijoPadre.appendChild(deleteButton);
+
+            padrePost.appendChild(hijoPadre);
+
+        })
+ }
+
+function editTask(index){
+
+    objetoPost = posts[index];
+
+    const imgEdit = document.getElementById(`imagenModal`);
+
+
+    imgEdit.addEventListener(`blur`, ()=>{
+      
+        document.getElementById('srcModalAfter').src = img + document.getElementById('imagenModal').value;
+
+        srcModalAfter.style.display = 'block';
+            
+        document.getElementById('imgAfter').textContent= `Imagen after`;
+
+
+    })
+
+    document.getElementById('textModal').value = objetoPost.texto;
+    document.getElementById('imagenModal').value = objetoPost.imagen;
+alert(objetoPost.imagen);
+    document.getElementById('srcModal').src = img + objetoPost.imagen;
+
+    //y que muestre la ventana modal
+    const editModal = document.getElementById('editModal');
+    editModal.style.display = 'block';
+}
+function saveTask() {
+
+   
+objetoPost.texto = document.getElementById('textModal').value;
+objetoPost.fecha = dateInputValue;
+objetoPost.imagen = document.getElementById('imagenModal').value;
+
+document.getElementById('srcModalAfter').src = "";
+document.getElementById('imgAfter').textContent = "";
+document.getElementById('srcModalAfter').style.display = "none";
+
+
+const editModal = document.getElementById("editModal");
+editModal.style.display = "none";
+
+
+
+displayTask();
+}
+
+function cancelEdit() {
+
+
+
+        const textModal = document.getElementById("textModal");
+        textModal.value = "";
+
+        const imagenModal = document.getElementById("imagenModal");
+        imagenModal.value = "";
+      
+        dateModal.value = "";
+
+        const editModal = document.getElementById("editModal");
+        editModal.style.display = "none";
+}
+
+function eliminarTask(index) {
+//como al boton le cree con el index y lo paso con el event
+//borrara su posicion en el array
+posts.splice(index, 1);
+displayTask();
+}
+
+function ordenarBurbuja() {
+//esta funcion se llamara siempre cuando se ejecute displayTask para que se ordene el array antes de pintarse
+//lo copie y pegue casi
+
+var control;
+
+do { 
+
+    //control de flujo, si no ha habido ningun cambio que se rompa el bucle
+    control = false;
+    
+    //que empiece desde el principio y en caso de que sea menor que su numero siguiente, que se intercambien la posicion
+    //este coje la posicion 0 y si hace falta la mueve hasta el final del array una vez hecho eso se cambia a false y vuelve a entrar en el bucle, vuelve a cojer la primera posicion
+    //y la vuelve a mover en caso de ser necesario, cuando no haya nada que mover se para.
+    for (var i = 0; i < posts.length - 1; i++) {
+
+        //comparolas fechas de los objetos accediendo a la posicion con i y al tag con el .fecha
+        if (posts[i].fecha < posts[i + 1].fecha) {
+            
+            //guardo el valor de posicion para al hacer swap darselo nuevamente a la posicion i +1
+            var temp = posts[i];
+            posts[i] = posts[i + 1];
+            posts[i + 1] = temp;
+
+            control = true;
+        }
+    }
+} while (control);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function extractFilename(path) {
+  if (path.substr(0, 12) == "C:\\fakepath\\")
+    return path.substr(12); // modern browser
+  var x;
+  x = path.lastIndexOf('/');
+  if (x >= 0) // Unix-based path
+    return path.substr(x+1);
+  x = path.lastIndexOf('\\');
+  if (x >= 0) // Windows-based path
+    return path.substr(x+1);
+  return path; // just the filename
+}
+
+
+</script>
+    
+</body>
+</html>
