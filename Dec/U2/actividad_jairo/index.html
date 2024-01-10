@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Gestion de hotel</h1>
+
+    <button id = "buttonCrear">Crear hotel</button>
+    <button id = "buttonGestionar">Gestionar hoteles</button>
+
+    <div id="editModal" class="modalCrearHotel">
+       <div class="modalCrearHotel-content">
+
+            <label>Nombre del hotel</label>
+            <input type = "text" id = "crearHotelInput">
+            <button id = "buttonModalAddHotel">Añadir</button>
+            <button id = "buttonModalSalir">Salir</button>
+
+       </div>
+    </div>
+
+    <div id="editModalGestion" class="modalCrearHotel">
+        <div class="flexModal">
+
+        <h1>Gestión de hoteles</h1>
+        <button id = "salirGestion">Salir</button>
+
+        </div>
+        
+
+        <div id = "padre-hoteles" class="modalGestionarHotel-content">
+        </div>
+     </div>
+
+     <div id="editModalGestionH" class="modalCrearHotel">
+        <div class="flexModal">
+
+        <h1>Gestión de habitaciones</h1>
+        <button id = "addHabitacion">Añadir </button>
+        <button id = "salirGestionHabitaciones">Salir</button>
+
+        </div>
+        
+
+        <div id = "padre-habitaciones" class="modalGestionarHotel-habitaciones">
+        </div>
+     </div>
+
+
+     <div id="editModalH" class="modalCrearHotel">
+        <div class="modalCrearHotel-content">
+ 
+             <label class="bHabitacion">Numero de Habitación</label>
+             <input class="bHabitacion" type = "text" id = "crearHabitacionInput">
+             <br><br>
+
+            <fieldset class="bHabitacion">
+
+            <label>Ocupada</label>
+            <input  type = "radio" name="status" id = "radio1" >
+
+            <label>Vacía</label>
+            <input  type = "radio" name="status" id = "radio2">
+             
+            </fieldset>
+
+             <button id = "buttonModalAddHotelH" class="bHabitacion">Añadir</button>
+             <button id = "buttonModalSalirH" class="bHabitacion, bHabitacion1">Salir</button>
+ 
+        </div>
+     </div>
+
+    <script>
+    var hotel;
+    var booking = [];
+   
+
+    const buttonCrearHotel = document.getElementById("buttonCrear");
+    buttonCrearHotel.addEventListener("click", ()=> newHotelModal())
+    const buttonGestionHotel = document.getElementById("buttonGestionar");
+    buttonGestionHotel.addEventListener("click", ()=> gestionHoteles())
+   
+
+    function newHotelModal(){
+
+        const editModal = document.getElementById("editModal");
+        editModal.style.display = "block";
+
+
+        const buttonModalAdd = document.getElementById("buttonModalAddHotel");
+            
+        buttonModalAdd.addEventListener("click", ()=>{
+
+            const inputModal = document.getElementById("crearHotelInput");
+            inputModalValue = inputModal.value.trim();
+            
+            if(inputModalValue == "") return;
+
+            const objHotel = {
+
+                nombre: inputModalValue,
+                habitacion: [],
+               
+            }
+            booking.push(objHotel);
+            
+     
+                 
+            editModal.style.display = "none";
+            inputModal.value = "";
+            })
+
+            const buttonModalSalir = document.getElementById("buttonModalSalir");
+
+            buttonModalSalir.addEventListener("click", ()=> {
+
+                const inputModal = document.getElementById("crearHotelInput");
+                editModal.style.display = "none";
+                inputModal.value = "";
+                
+            })
+    }
+
+
+
+
+    function gestionHoteles(){
+
+       
+    
+ 
+
+        const padreHoteles = document.getElementById("padre-hoteles");
+        padreHoteles.innerHTML = "";
+
+        
+        booking.forEach((hotel, index) => {
+            
+         
+
+            const hijoPadre = document.createElement("div");
+            hijoPadre.classList.add("justiMedio");
+
+
+            const labelHotel = document.createElement("label");
+            labelHotel.textContent = hotel.nombre;
+            hijoPadre.appendChild(labelHotel);
+
+            const buttonHabitacionGestionar = document.createElement("button");
+            buttonHabitacionGestionar.classList.add ("buttonMargin");
+            buttonHabitacionGestionar.textContent = "Gestionar habitaciones";
+            buttonHabitacionGestionar.addEventListener("click", ()=> {
+                editModalGestion.style.display = "none";
+                displayHabitaciones(index);
+            })
+            hijoPadre.appendChild(buttonHabitacionGestionar);
+
+            const buttonEliminar = document.createElement("button");
+            buttonEliminar.classList.add ("buttonMargin");
+            buttonEliminar.textContent = "Eliminar";
+            buttonEliminar.addEventListener("click", ()=> deleteH(index))
+            hijoPadre.appendChild(buttonEliminar);
+
+            padreHoteles.appendChild(hijoPadre);
+   
+        });
+
+        
+
+        
+        const editModalGestion = document.getElementById("editModalGestion");
+        editModalGestion.style.display = "block";
+
+        const salirGestionModal = document.getElementById("salirGestion");
+
+        salirGestionModal.addEventListener("click", ()=>{
+
+
+            editModalGestion.style.display = "none";
+
+        })
+
+    }
+    function deleteH(index) {
+    booking.splice(index, 1);
+    gestionHoteles();
+}
+function displayHabitaciones(index){
+
+    hotel = booking[index];
+
+
+        const editModalGestionH = document.getElementById("editModalGestionH");
+        editModalGestionH.style.display = "block";
+
+        const salirGestionHabitaciones = document.getElementById("salirGestionHabitaciones");
+
+        salirGestionHabitaciones.addEventListener("click", ()=>{
+        editModalGestionH.style.display = "none";
+
+        })
+
+        const addHabitacion = document.getElementById("addHabitacion");
+        addHabitacion.addEventListener("click", () =>  {
+            editModalGestionH.style.display = "none";
+            crearHabitacion(index);
+        })
+
+        const padreHabitaciones= document.getElementById("padre-habitaciones");
+        padreHabitaciones.innerHTML = "";
+
+        
+
+
+}
+
+function crearHabitacion(index){
+
+    const editModalH = document.getElementById("editModalH");
+    editModalH.style.display = "block";
+
+    
+    const buttonModalSalirH = document.getElementById("buttonModalSalirH");
+
+    buttonModalSalirH.addEventListener("click", ()=>{
+    editModalH.style.display = "none";
+
+    const editModalGestionH = document.getElementById("editModalGestionH");
+    editModalGestionH.style.display = "block";
+
+    })
+
+    const buttonModalAddHotelH = document.getElementById("buttonModalAddHotelH");
+    buttonModalAddHotelH.addEventListener("click", ()=> {
+
+       
+
+    const crearHabitacionInput = document.getElementById("crearHabitacionInput");
+    crearHabitacionInputValue = crearHabitacionInput.value.trim();
+   
+    const radio1 = document.getElementById("radio1");
+    let ocupadaSiNo = "";
+
+    if(radio1.checked ){
+         
+          ocupadaSiNo = "Ocupada";
+         
+        }else {
+            ocupadaSiNo = "Vacio"}
+          
+        
+        const habitacion1 ={
+
+            numero: crearHabitacionInputValue,
+            ocupado: ocupadaSiNo,
+          
+
+        }
+        hotel.habitacion.push(habitacion1);
+        alert(`Número de habitación: ${habitacion1.numero}\nEstado: ${habitacion1.ocupado}`);
+     
+        
+        
+    
+        editModalH.style.display = "none";
+        displayHabitaciones(index);
+       
+        
+        
+
+       
+
+
+        
+    })
+
+}
+
+
+
+
+    </script>
+</body>
+</html>
