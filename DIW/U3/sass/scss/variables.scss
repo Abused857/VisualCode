@@ -1,0 +1,19 @@
+$font-style: bold;
+$font-family: sans-serif;
+
+@function size($size) {
+  @return $size * 10px + $size;
+}
+
+@mixin box-styles($size) {
+  font-size: size($size);
+  font-style: $font-style;
+  font-family: $font-family;
+  border: $size + px solid black;
+}
+
+@for $hijo from 1 through 5 {
+  .caja#{$hijo} {
+    @include box-styles($hijo);
+  }
+}
