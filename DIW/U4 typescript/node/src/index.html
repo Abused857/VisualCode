@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tareas</title>
+</head>
+<body>
+
+<h1>Lista de Tareas</h1>
+
+<form id="task-form">
+    <label>Tarea:</label>
+    <input type="text" id="texto">
+    <label><input type="radio" id="completada" name="status" value="completada"> Completada</label>
+    <label><input type="radio" id="incompleta" name="status" value="incompleta"> Incompleta</label>
+    <button type="button" onclick="addTask()">Agregar tarea</button>
+</form>
+
+<ul id="task-list"></ul>
+
+<script>
+
+function addTask() {
+    var tarea = document.getElementById("texto").value;
+    var estado = obtenerEstado();
+
+    if (!tarea || !estado) {
+        alert("falata texto o estado a la tarea");
+        return;
+    }
+
+    var nuevaTarea = crearElementoTarea(tarea, estado);
+
+    document.getElementById("task-list").appendChild(nuevaTarea);
+
+    limpiarFormulario();
+}
+
+function obtenerEstado() {
+
+    if (document.getElementById("completada").checked) {
+
+        return "completada";
+
+    } else if (document.getElementById("incompleta").checked) {
+
+        return "incompleta";
+    }
+    return null;
+}
+
+function crearElementoTarea(tarea, estado) {
+
+    var nuevaTarea = document.createElement("li");
+
+    nuevaTarea.textContent = tarea + " -> Estado: " + estado;
+
+    var eliminarButton = document.createElement("button");
+
+    eliminarButton.textContent = "Eliminar";
+
+    eliminarButton.onclick = function() {
+        nuevaTarea.remove();
+    };
+
+    nuevaTarea.appendChild(eliminarButton);
+
+    return nuevaTarea;
+}
+
+function limpiarFormulario() {
+    document.getElementById("texto").value = "";
+    document.getElementById("completada").checked = false;
+    document.getElementById("incompleta").checked = false;
+}
+
+
+</script>
+</body>
+</html>

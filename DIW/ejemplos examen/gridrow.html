@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejemplo Grid con Template Columns y Rows</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: auto 200px auto; 
+        grid-gap: 10px;
+        padding: 20px;
+    }
+
+    .header {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        grid-column: 1 / -1; 
+    }
+
+    .nav {
+        background-color: #666;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        grid-column: 1 / -1; /* Ocupa todas las columnas */
+    }
+
+    .content {
+        background-color: #ccc;
+        padding: 20px;
+        text-align: center;
+        grid-column: 2 / 3; /* Ocupa la segunda columna */
+        grid-row: 3 / 4; /* Ocupa la tercera fila */
+    }
+
+    .sidebar {
+        background-color: #666;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        grid-column: 1 / 2; /* Ocupa la primera columna */
+        grid-row: 2 / 4; /* Ocupa desde la segunda hasta la cuarta fila */
+    }
+
+    .footer {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        grid-column: 1 / -1; /* Ocupa todas las columnas */
+    }
+</style>
+</head>
+<body>
+<div class="grid-container">
+    <div class="header">Header</div>
+    <div class="nav">Navegador</div>
+    <div class="content">Contenido</div>
+    <div class="sidebar">Barra lateral</div>
+    <div class="footer">Footer</div>
+</div>
+</body>
+</html>

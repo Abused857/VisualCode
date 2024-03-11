@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es6",
+    "lib": ["dom", "es2015"]
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}

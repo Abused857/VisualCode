@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejemplos de Hover y Transformación</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .elemento {
+        width: 200px;
+        height: 100px;
+        background-color: #ccc;
+        margin-bottom: 20px;
+        text-align: center;
+        line-height: 100px;
+        border-radius: 5px;
+        transition: all 0.5s ease-in-out; /* Transición suave */
+    }
+
+    /* Cambio de color de fondo al hacer hover */
+    .elemento.color-hover:hover {
+        background-color: #ff0000;
+    }
+
+    /* Cambio de tamaño de fuente al hacer hover */
+    .elemento.font-size-hover:hover {
+        font-size: 20px;
+    }
+
+    /* Cambio de opacidad al hacer hover */
+    .elemento.opacity-hover:hover {
+        opacity: 0.5;
+    }
+
+    /* Aparición de sombra al hacer hover */
+    .elemento.shadow-hover:hover {
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Rotación al hacer hover */
+    .elemento.rotation-hover:hover {
+        transform: rotate(45deg);
+    }
+
+    /* Escalado al hacer hover */
+    .elemento.scale-hover:hover {
+        transform: scale(1.2);
+    }
+
+    /* Desplazamiento al hacer hover */
+    .elemento.translation-hover:hover {
+        transform: translateY(20px);
+    }
+
+    /* Transformación 3D al hacer hover */
+    .elemento.perspective-hover:hover {
+        transform: rotateY(180deg);
+    }
+</style>
+</head>
+<body>
+<div class="elemento color-hover">Cambiar Color</div>
+<div class="elemento font-size-hover">Cambiar Tamaño de Fuente</div>
+<div class="elemento opacity-hover">Cambiar Opacidad</div>
+<div class="elemento shadow-hover">Añadir Sombra</div>
+<div class="elemento rotation-hover">Rotar</div>
+<div class="elemento scale-hover">Escalar</div>
+<div class="elemento translation-hover">Desplazar</div>
+<div class="elemento perspective-hover">Transformación 3D</div>
+</body>
+</html>

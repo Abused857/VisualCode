@@ -1,6 +1,24 @@
 
-document.addEventListener('DOMContentLoaded',function inicializarTabla(){
+class Carrito {
+  constructor() {
+    this.productos = [];
+  }
 
+  agregarProducto(producto) {
+    this.productos.push(producto);
+  }
+
+  obtenerProductos() {
+    return this.productos;
+  }
+}
+
+
+
+
+
+document.addEventListener('DOMContentLoaded',function inicializarTabla(){
+    const carrito = new Carrito();
     const productosTable = document.getElementById('productos-table');
   
     fetch('https://jsonblob.com/api/1204822012739837952')
@@ -11,10 +29,12 @@ document.addEventListener('DOMContentLoaded',function inicializarTabla(){
         return response.json();
       })
       .then(data => {
+        data.products.forEach(producto => {
+          carrito.agregarProducto(producto);
+        });
        
   
-        data.products.forEach(producto => {
-  
+        carrito.obtenerProductos().forEach(producto => {
           const row = document.createElement('tr');
   
           const cellProducto = document.createElement('td');
@@ -25,7 +45,7 @@ document.addEventListener('DOMContentLoaded',function inicializarTabla(){
 
           const botonRestar = document.createElement('button');
           botonRestar.textContent = '-';
-          botonRestar.addEventListener('click', () => ajustarCantidad(producto.SKU, -1, producto.price, data));
+          botonRestar.addEventListener('click', () => ajustarCantidad(producto.SKU, -1, producto.price, carrito));
 
           const spanCantidad = document.createElement('span');
           spanCantidad.id = `${producto.SKU}-cantidad`;
@@ -34,7 +54,7 @@ document.addEventListener('DOMContentLoaded',function inicializarTabla(){
 
           const botonSumar = document.createElement('button');
           botonSumar.textContent = '+';
-          botonSumar.addEventListener('click', () => ajustarCantidad(producto.SKU, 1, producto.price, data));
+          botonSumar.addEventListener('click', () => ajustarCantidad(producto.SKU, 1, producto.price, carrito));
 
           cellCantidad.appendChild(botonRestar);
           cellCantidad.appendChild(spanCantidad);
@@ -43,7 +63,7 @@ document.addEventListener('DOMContentLoaded',function inicializarTabla(){
           row.appendChild(cellCantidad);
 
           const cellUnidadPrecio = document.createElement('td');
-          cellUnidadPrecio.textContent = `${producto.price}`;
+          cellUnidadPrecio.textContent = `${producto.price}` + ` €`;
           cellUnidadPrecio.id = `${producto.price}-price`;
           row.appendChild(cellUnidadPrecio);
 
@@ -76,27 +96,27 @@ document.addEventListener('DOMContentLoaded',function inicializarTabla(){
   */
 
 
-  function ajustarCantidad(producto, cambio, precio, data){
+  function ajustarCantidad(producto, cambio, precio, carrito){
 
     const unidadesElement = document.getElementById(`${producto}-cantidad`)
     let unidades = parseInt(unidadesElement.textContent) + cambio;
     unidades = unidades < 0 ? 0 : unidades;
     unidadesElement.textContent = unidades;
-    ajustarTotal(producto, unidades, precio, data);
+    ajustarTotal(producto, unidades, precio, carrito);
    
   }
 
 
-  function ajustarTotal(producto, unidades, precio, data){
+  function ajustarTotal(producto, unidades, precio, carrito){
 
     const totalElement = document.getElementById(`${producto}-total`)
     let total = precio * unidades;
     totalElement.textContent = total.toFixed(2) + " €";
-    actualizarCarrito(data, producto, total.toFixed(2));
+    actualizarCarrito(carrito, producto, total.toFixed(2));
   }
 
 
-  function actualizarCarrito(data, producto, total) {
+  function actualizarCarrito(carrito, producto, total) {
   
     const tablaContainer = document.getElementById(`carrito-table`);
     
@@ -104,7 +124,7 @@ document.addEventListener('DOMContentLoaded',function inicializarTabla(){
     cellDelete(tablaContainer, producto);
    
 
-    data.products.forEach(product => {
+    carrito.obtenerProductos().forEach(product => {
 
       if(product.SKU == producto){
        

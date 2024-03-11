@@ -1,0 +1,112 @@
+.elemento:hover {
+    background-color: #ff0000; /* Cambia a rojo al hacer hover */
+}
+.elemento:hover {
+    font-size: 20px; /* Aumenta el tamaño de la fuente al hacer hover */
+}
+.elemento:hover {
+    opacity: 0.5; /* Reduce la opacidad al hacer hover */
+}
+.elemento:hover {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); /* Añade sombra al hacer hover */
+}
+.elemento:hover {
+    transform: rotate(45deg); /* Rotación de 45 grados al hacer hover */
+}
+.elemento:hover {
+    transform: rotate(45deg); /* Rotación de 45 grados al hacer hover */
+}
+.elemento {
+    transition: transform 0.3s ease-in-out; /* Transición suave */
+}
+
+.elemento:hover {
+    transform: scale(1.2); /* Aumenta el tamaño al hacer hover */
+}
+.elemento {
+    transition: transform 0.3s ease-in-out; /* Transición suave */
+}
+
+.elemento:hover {
+    transform: scale(1.2); /* Aumenta el tamaño al hacer hover */
+}
+.elemento {
+    transition: transform 0.3s ease-in-out; /* Transición suave */
+}
+
+.elemento:hover {
+    transform: scale(1.2); /* Aumenta el tamaño al hacer hover */
+}
+.elemento {
+    position: relative;
+    transition: top 0.3s ease-in-out; /* Transición suave */
+}
+
+.elemento:hover {
+    top: 20px; /* Desplaza 20px hacia abajo al hacer hover */
+}
+.elemento {
+    transition: transform 0.5s ease-in-out; /* Transición suave */
+}
+
+.elemento:hover {
+    transform: rotateY(180deg); /* Rotación 3D en el eje Y al hacer hover */
+}
+.elemento {
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out; /* Transición suave */
+}
+
+.elemento:hover {
+    width: 200px; /* Aumenta el ancho */
+    height: 200px; /* Aumenta la altura */
+}
+/* Cambio de color de fondo con transición */
+.elemento-color {
+    background-color: #ccc;
+    transition: background-color 0.3s ease-in-out; /* Transición suave */
+}
+
+.elemento-color:hover {
+    background-color: #ff0000; /* Cambia a rojo al hacer hover */
+}
+
+/* Cambio de tamaño de fuente con transición */
+.elemento-font-size {
+    font-size: 16px;
+    transition: font-size 0.3s ease-in-out; /* Transición suave */
+}
+
+.elemento-font-size:hover {
+    font-size: 20px; /* Aumenta el tamaño de la fuente al hacer hover */
+}
+
+/* Cambio de opacidad con transición */
+.elemento-opacity {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out; /* Transición suave */
+}
+
+.elemento-opacity:hover {
+    opacity: 0.5; /* Reduce la opacidad al hacer hover */
+}
+
+/* Desplazamiento con transición */
+.elemento-translate {
+    position: relative;
+    top: 0;
+    transition: top 0.3s ease-in-out; /* Transición suave */
+}
+
+.elemento-translate:hover {
+    top: 20px; /* Desplaza 20px hacia abajo al hacer hover */
+}
+
+/* Escalado con transición */
+.elemento-scale {
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out; /* Transición suave */
+}
+
+.elemento-scale:hover {
+    transform: scale(1.2); /* Aumenta el tamaño al hacer hover */
+}

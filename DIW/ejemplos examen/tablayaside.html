@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid Layout con Tabla</title>
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-gap: 10px;
+        padding: 20px;
+    }
+
+    .grid-item {
+        background-color: #ccc;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .grid-item:nth-child(1) {
+        background-color: #f0f0f0; /* Solo para diferenciar */
+    }
+
+    .grid-item:nth-child(1) table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .grid-item:nth-child(1) td {
+        border: 1px solid #000;
+        padding: 8px;
+    }
+</style>
+</head>
+<body>
+<div class="grid-container">
+    <div class="grid-item">
+        <table>
+            <tr>
+                <td>Columna 1</td>
+                <td>Columna 2</td>
+                <td>Columna 2</td>
+                <td>Columna 2</td>
+                <td>Columna 2</td>
+            </tr>
+            <tr>
+                <td colspan="2">Dato 1</td>
+                <td colspan="2">Dato 2</td>
+                <td>Dato 1</td>
+            </tr>
+        </table>
+    </div>
+    <div class="grid-item">Item que ocupa un fr</div>
+</div>
+</body>
+</html>
