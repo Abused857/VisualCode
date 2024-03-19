@@ -1,0 +1,48 @@
+<h1>{{ title }}</h1>
+
+<form>
+
+  <input type="text" name ="nombre" [(ngModel)]="name">
+
+  <input type ="text" name = "apellido" [(ngModel)]="apellido">
+
+  <input type="text" name="cargo" [(ngModel)]="cargo">
+
+  <input type = "submit" value="Register" (click)="userRegist()">
+
+
+
+
+</form>
+
+@if (validData) 
+{
+  <p> {{ mensaje }} named: {{ name }}  {{ apellido }} y tiene el cargo de: <span [ngClass]="{paraDirectores: cargo == 'directores'}">{{ cargo }}</span>
+  </p>
+}@if(name === '' && apellido === '')
+  
+{<p [style.display]="showInvalidMessage2 ? 'none' : 'inline'">Nadie registrado</p>}
+
+
+@else {
+  
+  
+  @if(name != '' || apellido != '')
+  
+  {
+    <p [style.display]="showInvalidMessage ? 'inline' : 'none' ">{{ invalid }}</p>
+   
+  }
+  
+}
+
+<ul>
+
+  @for (entrada of entradas; track entrada.id){
+    <li> Id: {{ entrada.id }} título: {{ entrada.titulo }}</li>
+    <br>
+  }
+  
+
+
+</ul>

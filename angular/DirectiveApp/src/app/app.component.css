@@ -1,0 +1,16 @@
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+form > input{
+    margin: 10px auto;
+    width: 200px;
+}
+
+.paraDirectores
+{
+    color: red;
+    font-weight: bold;
+    text-decoration: underline;
+}

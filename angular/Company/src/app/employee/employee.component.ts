@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -7,7 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-employee',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, FormsModule],
   
   
   templateUrl: './employee.component.html',
@@ -28,6 +28,10 @@ export class EmployeeComponent {
   disableProperty = true;
 
   userRegister = false;
+
+  RegisterText = "there is no one register";
+
+  companyBinding = "Google";
 
   constructor(private fb: FormBuilder)
   {
@@ -69,6 +73,22 @@ export class EmployeeComponent {
   {
     this.userRegister = true;
   }
+
+
+  setCheckboxEvent( event: Event)
+  {
+    //alert(`El usuario hizo click en el checkbox`)
+    //this.RegisterText = `THERE IS ONE USER REGISTER`;
+    //if(<HTMLInputElement>event.target).value == " si"
+    const target = event.target as HTMLInputElement;
+    if (target.value == "si") {
+      this.RegisterText = `THERE IS ONE USER REGISTER`;
+    } else {
+      this.  RegisterText = "there is no one register";
+    }
+
+  }
+
 
 
 

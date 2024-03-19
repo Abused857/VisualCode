@@ -63,3 +63,9 @@ form > p:last-of-type{
 {
     margin-top: 20px;
 }
+.div3
+{
+    background-color: chocolate;
+    width: 500px;
+    margin: auto;
+}
