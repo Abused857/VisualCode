@@ -1,0 +1,10 @@
+instalarlo: npm install -g @angular/cli
+
+crear proyecto: ng new my-first-project
+
+abrir el server: ng serve --open
+
+crear componente: ng generate component (nombre del componente)
+
+
+pasar array de padre a hijo= <app-employee-son class="app-employee-son" *ngFor="let empleado of employee; let i =index" [empleadoDeLista]="empleado" [indice]="i"></app-employee-son>

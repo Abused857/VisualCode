@@ -1,0 +1,12 @@
+git config --global user.name "Tu Nombre"
+git config --global user.email "tu@email.com"
+git init
+git clone https://github.com/tuusuario/turepositorio.git
+git add nombre-de-archivo
+# o para añadir todos los archivos modificados
+git add .
+git commit -m "Descripción del commit"
+git push origin nombre-de-rama
+git pull origin nombre-de-rama
+
+
