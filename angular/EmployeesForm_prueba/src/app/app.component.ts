@@ -12,6 +12,7 @@ import { ProyectosComponentComponent } from './proyectos-component/proyectos-com
 import { QuienesComponentComponent } from './quienes-component/quienes-component.component';
 import { routes } from './app.routes';
 import { ActualizaComponentComponent } from './actualiza-component/actualiza-component.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @Component({
@@ -20,6 +21,7 @@ import { ActualizaComponentComponent } from './actualiza-component/actualiza-com
   imports: [RouterOutlet, FormsModule, ReactiveFormsModule, EmployeeSonComponent,
      CommonModule, HomeComponentComponent, ContactoComponentComponent,ProyectosComponentComponent,
       QuienesComponentComponent,RouterLink, RouterLinkActive,RouterModule,
+      HttpClientModule,
     ActualizaComponentComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
