@@ -1,6 +1,6 @@
 instalarlo: npm install -g @angular/cli
 
-crear proyecto: ng new my-first-project
+crear proyecto: ng new my-first-project --no-standalone
 
 abrir el server: ng serve --open
 
