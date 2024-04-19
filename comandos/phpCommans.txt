@@ -1,3 +1,7 @@
+crear proyecto de laravel: PS C:\xampp\htdocs\laravel> composer create-project --prefer-dist laravel/laravel (Nombre del proyecto)     
+
+laravel new phpunit-tests
+
 Activar puerto: php artisan serve --port=8082
 Saber todas las rutas: php artisan router:list
 composer require laravel/breeze --dev
@@ -5,6 +9,7 @@ instalar breez: php artisan breeze:install
 npm run dev/ npm run build
 
 hacer una view: php artisan make:view folder.name (note.show)
+crear tabla en migrate: php artisan make:migration create_users_table        
 
 crear un controlador: php artisan make:controller NombreController --resource --model=(Nombre del modelo)
 seedear: php artisan migrate:fresh --seed
@@ -14,6 +19,55 @@ hacer un modelo: php artisan make:model (Nombre del modelo) -m
 añadir al publish: php artisan config:publish broadcasting  
 
 php artisan make:middleware SuperAdmin    
+
+ 
+
+
+$ docker-compose exec php php artisan config:clear
+$ docker-compose exec php php artisan cache:clear
+$ docker-compose exec php php artisan view:clear
+$ docker-compose exec php php artisan config:cache
+
+# para obtener permisos dentro del servicio php
+$ docker-compose exec php chown -R www-data: /var/www/html
+
+# para crear las carpetas del proyecto de php desde la carpeta src
+$ pwd# debe decir que estas enla carpeta src
+$ mkdir storage/framework/{views, testing, sessions, cache/data}
+
+
+
+ROUTING
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::get('/', [AdminController::class, 'index']);
+    Route::get('/usuarios', [UsuariosController::class, 'index']);
+    Route::get('/productos', [ProductosController::class, 'index']);
+});
+
+
+Route::resource('productos', ProductosController::class);
+
+///////////////////////////////////////////////////////////////////////////
+
+	GET|HEAD        note ..........note.index › NoteController@index  
+  POST            note ............... note.store › NoteController@store  
+  GET|HEAD        note/create ....... note.create › NoteController@create  
+  GET|HEAD        note/{note} ....... note.show › NoteController@show  
+  PUT|PATCH       note/{note} ...... note.update › NoteController@update  
+  DELETE          note/{note} ....... note.destroy › NoteController@destroy  
+  GET|HEAD        note/{note}/edit ...note.edit › NoteController@edit  
+
+
+
+Route::redirect('/', '/note')->name('dashboard');
+
+Route::get('/usuarios', [UsuariosController::class, 'index'])->name('usuarios.index');
+
+reiniciar cache: php artisan route:clear
+
+rutas cache para asignalar a las funciones y que cargue antes: php artisan route:cache
+
 
 
 
