@@ -19,4 +19,6 @@ class Service extends Model
     {
         return $this -> belongsToMany(Vehicle::class);
     }
+
+   
 }
