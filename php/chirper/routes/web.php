@@ -25,10 +25,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//creo dos rutas GET	/chirps	index	chirps.index     POST	/chirps	store	chirps.store
+//creo dos rutas GET	/chirps	index	chirps.index     POST	/chirps	store	chirps.store   PUT/PATCH	/chirps/{chirp}	update	chirps.update
 Route::resource('chirps', ChirpController::class)
 
-    ->only(['index', 'store'])
+    ->only(['index', 'store', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
