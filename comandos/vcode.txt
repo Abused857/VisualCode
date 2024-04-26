@@ -1,0 +1,3 @@
+alt+z ajustas todo el texto a la pantalla
+
+shift + alt + f autoformatear con pettrier
