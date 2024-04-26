@@ -1,0 +1,112 @@
+{
+    "workbench.colorTheme": "Oled Neon Theme Black",
+    "workbench.settings.applyToAllProfiles": [
+      
+      
+      
+
+
+
+
+    ],
+   
+    "background.enabled": true,
+    "oneDarkPro.bold": true,
+    "oneDarkPro.vivid": true,
+    "editor.fontFamily": "Operator Mono, Fira Code iScript, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+
+  "editor.fontSize": 18,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          //following will be in italic
+          "comment",
+          "entity.name.type.class", //class names
+          "constant", //String, Number, Boolean…, this, super
+          "storage.modifier", //static keyword
+          "storage.type.class.js", //class keyword
+          "keyword", //import, export, return…
+        ],
+        "settings": {
+          "fontStyle": "italic",
+          
+        }
+      },
+      {
+        "scope": [
+          //following will be excluded from italics (VSCode has some defaults for italics)
+
+          "invalid",
+          "keyword.operator",
+          "constant.numeric.css",
+          "keyword.other.unit.px.css",
+          "constant.numeric.decimal.js",
+          "constant.numeric.json"
+        ],
+        "settings": {
+          "fontStyle": ""
+        }
+      }
+    ]
+  },
+    
+    "background.fullscreen": {
+      "images": ["https://i.ibb.co/SydxYsC/geisha-God.jpg"], // urls of your images
+      "opacity": 0.91, // 0.85 ~ 0.95 recommended
+      "size": "cover", // also css, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`
+      "background-size": "30%", // Reducir el tamaño de la imagen al 30% del tamaño original
+      "position": "left", // Alinear la imagen a la izquierda y centrada verticalmente
+      "interval": 0 // seconds of interval for carousel, default `0` to disabled.
+  },
+  
+    "editor.codeActionsOnSave": {
+
+    },
+    "git.openRepositoryInParentFolders": "always",
+    "explorer.confirmDelete": false,
+    "workbench.productIconTheme": "fluent-icons",
+    "symbols.hidesExplorerArrows": false,
+    "workbench.iconTheme": "symbols",
+    "security.workspace.trust.untrustedFiles": "open",
+    "workbench.colorCustomizations": {
+
+
+      
+      "terminal.background":"#231E18",
+"terminal.foreground":"#ff9acc",
+"terminalCursor.background":"#CABCB1",
+"terminalCursor.foreground":"#CABCB1",
+"terminal.ansiBlack":"#231E18",
+"terminal.ansiBlue":"#0d8286",
+"terminal.ansiBrightBlack":"#20b7c2",
+"terminal.ansiBrightBlue":"#88A4D3",
+"terminal.ansiBrightCyan":"#6EB958",
+"terminal.ansiBrightGreen":"#B7BA53",
+"terminal.ansiBrightMagenta":"#BB90E2",
+"terminal.ansiBrightRed":"#D35C5C",
+"terminal.ansiBrightWhite":"#E4D4C8",
+"terminal.ansiBrightYellow":"#e01616",
+"terminal.ansiCyan":"#6EB958",
+"terminal.ansiGreen":"#a1ecff",
+"terminal.ansiMagenta":"#BB90E2",
+"terminal.ansiRed":"#D35C5C",
+"terminal.ansiWhite":"#CABCB1",
+"terminal.ansiYellow":"#ff6969",
+
+   "list.inactiveSelectionBackground": "#63492c",
+  // "sideBar.background": "#F8F6F6",
+   "sideBar.foreground": "#9bc1ec",
+  // "editor.background": "#FFFFFF",
+   "editor.foreground": "#e94ad4",
+  // "sideBarSectionHeader.background": "#CAC9C9",
+  // "sideBarSectionHeader.foreground": "#000000",
+  // "activityBar.border": "#FFFFFF",
+   "statusBar.background": "#4367dd",
+   "scrollbarSlider.activeBackground": "#77D4CB",
+   "scrollbarSlider.hoverBackground": "#8CE6DA",
+   "badge.background": "#81CA91"
+}
+}
+}

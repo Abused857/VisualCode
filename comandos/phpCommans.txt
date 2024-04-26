@@ -1,4 +1,5 @@
 crear proyecto de laravel: PS C:\xampp\htdocs\laravel> composer create-project --prefer-dist laravel/laravel (Nombre del proyecto)     
+COMPOSER UPDATE ///// composer dump_autoload
 
 laravel new phpunit-tests
 

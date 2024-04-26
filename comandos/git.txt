@@ -7,6 +7,13 @@ git add nombre-de-archivo
 git add .
 git commit -m "Descripción del commit"
 git push origin nombre-de-rama
-git pull origin nombre-de-rama
+git pull origin nombre-de-rama 
+
+git branch -m (nnombre): cambiar el nombre de una rama
+git branch -a : muestra todas las ramas 
+git branch //saber la rama en la que estas
+git branch -b (name): le das nombre a una rama nueva y te mueves a ella 
+git checkout (nombre de la rama )
+git merge (nombre de la rama a mergear en la main) -m "mensaje del mergeo"
 
 
