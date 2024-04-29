@@ -25,35 +25,35 @@ Route::get('/auth/{driver}/login', [SocialLoginController::class, 'handleCallbac
 
 Route::resource('clients', ClientController::class)
 
-        
-->middleware(['auth', 'verified', 'checkadmin'])
 
-        ->names([
+    ->middleware(['auth', 'verified', 'checkadmin'])
 
-            'index' => 'clients.index',
-            'create' => 'clients.create',
-            'store' => 'clients.store',
-            'show' => 'clients.show',
-            'edit' => 'clients.edit',
-            'update' => 'clients.update',
-            'destroy' => 'clients.destroy',
-]);
+    ->names([
+
+        'index' => 'clients.index',
+        'create' => 'clients.create',
+        'store' => 'clients.store',
+        'show' => 'clients.show',
+        'edit' => 'clients.edit',
+        'update' => 'clients.update',
+        'destroy' => 'clients.destroy',
+    ]);
 
 Route::resource('services', ServiceController::class)
 
-        
-        
-        ->middleware(['auth', 'verified', 'checkadmin'])
-        
-        ->names([
 
-            'index' => 'services.index',
-            'create' => 'services.create',
-            'store' => 'services.store',
-            'show' => 'services.show',
-            'edit' => 'services.edit',
-            'update' => 'services.update',
-            'destroy' => 'services.destroy',
-]);
 
-require __DIR__.'/auth.php';
+    ->middleware(['auth', 'verified', 'checkadmin'])
+
+    ->names([
+
+        'index' => 'services.index',
+        'create' => 'services.create',
+        'store' => 'services.store',
+        'show' => 'services.show',
+        'edit' => 'services.edit',
+        'update' => 'services.update',
+        'destroy' => 'services.destroy',
+    ]);
+
+require __DIR__ . '/auth.php';
