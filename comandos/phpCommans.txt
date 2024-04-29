@@ -1,5 +1,5 @@
-crear proyecto de laravel: PS C:\xampp\htdocs\laravel> composer create-project --prefer-dist laravel/laravel (Nombre del proyecto)     
-COMPOSER UPDATE ///// composer dump_autoload  /////   composer global update /////   composer selfupdate
+crear proyecto de laravel: composer create-project --prefer-dist laravel/laravel (Nombre del proyecto)     
+actualizar el composer: COMPOSER UPDATE ///// composer dump_autoload  /////   composer global update /////   composer selfupdate
 
 laravel new phpunit-tests
 
@@ -24,21 +24,7 @@ php artisan make:middleware SuperAdmin
  
 
 
-$ docker-compose exec php php artisan config:clear
-$ docker-compose exec php php artisan cache:clear
-$ docker-compose exec php php artisan view:clear
-$ docker-compose exec php php artisan config:cache
-
-# para obtener permisos dentro del servicio php
-$ docker-compose exec php chown -R www-data: /var/www/html
-
-# para crear las carpetas del proyecto de php desde la carpeta src
-$ pwd# debe decir que estas enla carpeta src
-$ mkdir storage/framework/{views, testing, sessions, cache/data}
-
-
-
-ROUTING
+ROUTING distintas maneras de crear las rutas
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/', [AdminController::class, 'index']);

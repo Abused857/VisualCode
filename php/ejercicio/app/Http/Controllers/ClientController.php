@@ -29,7 +29,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $request -> validate([
+        $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:clients,email',
             'phone' => 'required',
@@ -59,9 +59,9 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        $request -> validate ([
+        $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:client,email' . $client-> id,
+            'email' => 'required|email|unique:client,email' . $client->id,
             'phone' => 'required',
         ]);
     }
@@ -71,7 +71,7 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        $client -> delete();
+        $client->delete();
 
         return redirect()->route('clients.index')->with('success', 'Client deleted successfully');
     }

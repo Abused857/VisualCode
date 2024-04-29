@@ -6,6 +6,8 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+use function Laravel\Prompts\alert;
+
 class CheckAdmin
 {
     /**
@@ -15,11 +17,11 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth()->user()->role_id == 1 || Auth()->user()->role_id == 2){ // admin = 1 user = 2
+        if (Auth()->user()->role_id == 1 || Auth()->user()->role_id == 2) { // admin = 1 user = 2
+            
             return $next($request);
-        }else{
+        } else {
             return redirect()->route('login')->with('error', 'You do not have permission to access this page !');
         }
-        
     }
 }

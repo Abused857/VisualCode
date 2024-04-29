@@ -18,17 +18,16 @@ class SocialLoginController extends Controller
         return Socialite::driver($driver)->redirect();
     }
 
-   public function handleCallback($driver)
+    public function handleCallback($driver)
     {
-        
-        $user=Socialite::driver($driver)->stateless()->user();
-    
-   
- 
-        $user_account=SocialLogin::where('provider', $driver)->where('provider_id', $user->getId())->first();
 
-        if($user_account)
-        {
+        $user = Socialite::driver($driver)->stateless()->user();
+
+
+
+        $user_account = SocialLogin::where('provider', $driver)->where('provider_id', $user->getId())->first();
+
+        if ($user_account) {
             Auth::login($user_account->user);
 
             Session::regenerate();
@@ -38,29 +37,24 @@ class SocialLoginController extends Controller
 
         $db_user = User::where('email', $user->getEmail())->first();
 
-        if($db_user)
-        {
-            SocialLogin::create
-            ([
-                'provider'=>$driver,
-                'provider_id'=>$user->getId(),
-                'user_id'=>$db_user->id
-            ]);
-        }else
-        {
-            $db_user=User::create
-            ([
-                'name' => $user->getName(),
-                'email'=>$user->getEmail(),
-                'password'=> bcrypt(rand(1000, 9999)),
-            ]);
+        if ($db_user) {
+            SocialLogin::create([
+                    'provider' => $driver,
+                    'provider_id' => $user->getId(),
+                    'user_id' => $db_user->id
+                ]);
+        } else {
+            $db_user = User::create([
+                    'name' => $user->getName(),
+                    'email' => $user->getEmail(),
+                    'password' => bcrypt(rand(1000, 9999)),
+                ]);
 
-            SocialLogin::create
-            ([
-                'provider'=>$driver,
-                'provider_id'=>$user->getId(),
-                'user_id'=>$db_user->id
-            ]);
+            SocialLogin::create([
+                    'provider' => $driver,
+                    'provider_id' => $user->getId(),
+                    'user_id' => $db_user->id
+                ]);
         }
 
         Auth::login($db_user);
@@ -68,6 +62,5 @@ class SocialLoginController extends Controller
         Session::regenerate();
 
         return redirect()->intended('dashboard');
-
     }
 }
