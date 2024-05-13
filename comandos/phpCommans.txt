@@ -1,5 +1,5 @@
 crear proyecto de laravel: composer create-project --prefer-dist laravel/laravel (Nombre del proyecto)     
-actualizar el composer: COMPOSER UPDATE ///// composer dump_autoload  /////   composer global update /////   composer selfupdate
+actualizar el composer: COMPOSER UPDATE ///// composer dump´-autoload  /////   composer global update /////   composer selfupdate
 
 laravel new phpunit-tests
 
