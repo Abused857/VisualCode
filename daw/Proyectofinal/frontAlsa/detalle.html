@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalle del Autobús</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Detalle del Autobús</h1>
+    </header>
+    <div class="container">
+      <img id="busImage" src="a.jpg" alt="Imagen del autobús" />
+      <div id="detalle-autobus" class="detalle-autobus"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const index = urlParams.get("index");
+        if (index !== null) {
+          const horario = obtenerHorario(parseInt(index, 10));
+          mostrarDetalleAutobus(horario);
+        }
+      });
+
+      function obtenerHorario(index) {
+        const horarios = [
+          {
+            salida: "Santander",
+            destino: "Santoña",
+            salidaHora: "08:00",
+            llegadaHora: "10:30",
+            localizacion: "Praves",
+            tiempo: "10 min.",
+          },
+          {
+            salida: "Santander",
+            destino: "Santoña",
+            salidaHora: "09:30",
+            llegadaHora: "12:00",
+            localizacion: "No ha salido aún",
+            tiempo: "",
+          },
+          {
+            salida: "Santander",
+            destino: "Santoña",
+            salidaHora: "11:00",
+            llegadaHora: "14:00",
+            localizacion: "No ha salido aún",
+            tiempo: "",
+          },
+        ];
+
+        return horarios[index];
+      }
+
+      function mostrarDetalleAutobus(horario) {
+        const detalleAutobus = document.getElementById("detalle-autobus");
+
+        const tiempoTexto = horario.tiempo
+          ? ` y tardará aproximadamente ${horario.tiempo} en llegar al destino`
+          : "";
+
+        const localizacionTexto =
+          horario.localizacion !== "No ha salido aún"
+            ? ` va por ${horario.localizacion}`
+            : "no ha salido aún";
+
+        const busImage = document.getElementById("busImage");
+        if (horario.localizacion === "Praves") {
+          busImage.style.display = "block";
+        } else {
+          busImage.style.display = "none";
+        }
+
+        detalleAutobus.innerHTML = `
+        <h2>${horario.salida} - ${horario.destino}</h2>
+        <p>El autobús ${localizacionTexto}${tiempoTexto}.</p>
+      `;
+      }
+    </script>
+  </body>
+</html>

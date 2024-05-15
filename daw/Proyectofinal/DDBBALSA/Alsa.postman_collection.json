@@ -1,0 +1,1246 @@
+{
+	"info": {
+		"_postman_id": "37a5bc22-5d19-465e-8b9b-c0dd5baf2748",
+		"name": "Alsa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24993214"
+	},
+	"item": [
+		{
+			"name": "Ruta",
+			"item": [
+				{
+					"name": "buscar ruta por id",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "a3d00d1d-038f-467b-adce-6dc0b0fe8823",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/ruta/id/0e183a2d-cb7f-11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"ruta",
+								"id",
+								"0e183a2d-cb7f-11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rutas by origen",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "ff774119-505c-47f4-a428-c0b953b2180a",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/ruta-origen/Ciudad%20S",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"ruta-origen",
+								"Ciudad%20S"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ruta destino",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "ff774119-505c-47f4-a428-c0b953b2180a",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/ruta-destino/Ciudad%20T",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"ruta-destino",
+								"Ciudad%20T"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por destino A y b",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "e3bd075c-53ad-4fd9-8f73-c18e9bedc456",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/destino-y-destino/Ciudad%20R/Ciudad%20T",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"destino-y-destino",
+								"Ciudad%20R",
+								"Ciudad%20T"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rutas por distancia",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "15ce1a9f-d6ec-4f41-a4ef-b1cee635fcc5",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/ruta-distancia/1100.00",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"ruta-distancia",
+								"1100.00"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ruta por origen y destino",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "06f72570-1ef2-4f2f-a297-53373e3754f6",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/origen-y-destino/Ciudad%20M/Ciudad%20N",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"origen-y-destino",
+								"Ciudad%20M",
+								"Ciudad%20N"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Autobus",
+			"item": [
+				{
+					"name": "AllBuses",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "ae091731-254b-4d80-919b-1d143303a07c",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/allBuses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"allBuses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscaaarautobusporid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/id/865ad504-cb7e-11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"id",
+								"865ad504-cb7e-11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "autobusByModelo",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "2a7c72c5-2f2f-41ed-b13e-e111612f85f0",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/modelo/Isuzu%20Journey",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"modelo",
+								"Isuzu%20Journey"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "autobus capacidad entre",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "59031cec-881e-482c-82af-c9bbd9eaae3c",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/capacidad/entre/20/23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"capacidad",
+								"entre",
+								"20",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "autobus mayor",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "bea8c24d-6213-4b1f-9565-198a22d17e42",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/capacidad/mayor/38",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"capacidad",
+								"mayor",
+								"38"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "autobus menor",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "df90a65a-3c6c-4b0b-b387-9e75bc27583b",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/capacidad/menor/40",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"capacidad",
+								"menor",
+								"40"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "autobus igual",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "bb778cf7-1bf2-435b-8215-0f6be75731e8",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/capacidad/igual/40",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"capacidad",
+								"igual",
+								"40"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "autobus buscar por placa",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "0f72ef2c-a93e-4e06-888d-f2d778f04ceb",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/placa/JKL012",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"placa",
+								"JKL012"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "autobus buscar por color",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "df20f985-4d0e-453c-9883-c6d88f619af8",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/color/gris",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"color",
+								"gris"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "autubus color y modelo",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "aaef89b6-e6a3-4288-8abd-125529d217fd",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/color-y-marca?color=amarillo&placa=MNO345",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"color-y-marca"
+							],
+							"query": [
+								{
+									"key": "color",
+									"value": "amarillo"
+								},
+								{
+									"key": "placa",
+									"value": "MNO345"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "autobus capacidad y color",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "505aef51-acea-4209-94e5-21bc32b7c946",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/capacidad-y-color/20/amarillo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"capacidad-y-color",
+								"20",
+								"amarillo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar autobus",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/actualizar/autobus/modelo-placa-color/0e105197-cb7f-11/a/s/c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"actualizar",
+								"autobus",
+								"modelo-placa-color",
+								"0e105197-cb7f-11",
+								"a",
+								"s",
+								"c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar autobus",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/eliminar/autobus/id/0e105197-cb7f-11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"eliminar",
+								"autobus",
+								"id",
+								"0e105197-cb7f-11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Añadir autobus",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/add/autobus?modelo=sca&pasajeros=11&placa=a&color=a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"add",
+								"autobus"
+							],
+							"query": [
+								{
+									"key": "modelo",
+									"value": "sca"
+								},
+								{
+									"key": "pasajeros",
+									"value": "11"
+								},
+								{
+									"key": "placa",
+									"value": "a"
+								},
+								{
+									"key": "color",
+									"value": "a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Elimnar autobus hexa /cano",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/eliminar/autobus/id/0x680566e6251b43dd8cc67487599c225a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"eliminar",
+								"autobus",
+								"id",
+								"0x680566e6251b43dd8cc67487599c225a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pasajeros",
+			"item": [
+				{
+					"name": "pasajero por id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "pasajero por nombre",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "buscar por apellido",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "3ea8fe55-00e1-43e4-8cba-20551b0bdda1",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/pasajero/apellido/Alvarez",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"pasajero",
+								"apellido",
+								"Alvarez"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar nombre y apellido",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "bedda0e1-beb2-4704-9f42-eea670f336aa",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/pasajero/nombre-y-apellido/Manuel/Gomez",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"pasajero",
+								"nombre-y-apellido",
+								"Manuel",
+								"Gomez"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar edad igual",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "borrar persona",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/eliminar/persona/id/69d1b525-cb7f-11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"eliminar",
+								"persona",
+								"id",
+								"69d1b525-cb7f-11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ticket",
+			"item": [
+				{
+					"name": "ticket por id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/ticket/id/39d4fb54-cb7f-11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"ticket",
+								"id",
+								"39d4fb54-cb7f-11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Autobus de un ticket",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "ruta del ticket",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "dd4a4051-7a4a-471a-9a6c-df9423eee93e",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/ticket-ruta/b418f6ee-cb7f-11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"ticket-ruta",
+								"b418f6ee-cb7f-11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ticket por fecha",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "488f3179-159d-47f7-99f7-4a369a502525",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/ticket/fecha/14-02-2024",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"ticket",
+								"fecha",
+								"14-02-2024"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ticket por precio igual",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "6e9901f6-00fc-4dca-aab0-db4ee89c35aa",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/ticket/precio-igual/25.50",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"ticket",
+								"precio-igual",
+								"25.50"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Añadir Ticket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/add/ticket?idAutobus=f21c4624-cb7e-11&idRuta=0e183a2d-cb7f-11&fechaViaje=20-01-1988&precio=112",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"add",
+								"ticket"
+							],
+							"query": [
+								{
+									"key": "idAutobus",
+									"value": "f21c4624-cb7e-11"
+								},
+								{
+									"key": "idRuta",
+									"value": "0e183a2d-cb7f-11"
+								},
+								{
+									"key": "fechaViaje",
+									"value": "20-01-1988"
+								},
+								{
+									"key": "precio",
+									"value": "112"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reserva",
+			"item": [
+				{
+					"name": "buscar reserva por id",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "f4882636-03b5-4888-9231-51dbea6cf50e",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/reserva/id/852dc976-cb7f-11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"reserva",
+								"id",
+								"852dc976-cb7f-11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ticket por id reserva",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "503f3f21-7376-44b0-bdd0-cfb525b08a57",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/reserva-ticket/852dc976-cb7f-11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"reserva-ticket",
+								"852dc976-cb7f-11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Autobus de una reserva",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Reservas confirmadas",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "2f4b9d35-5371-4652-903f-4fbdab2d8ed5",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/buscar/reserva-confirmados",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"buscar",
+								"reserva-confirmados"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reserva  de un autobus por fecha",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "eab0468f-839e-4e32-838d-7a948af1894a",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/alsa/reserva/reservas-autobus-fecha/0e105197-cb7f-11/14-02-2024",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"alsa",
+								"reserva",
+								"reservas-autobus-fecha",
+								"0e105197-cb7f-11",
+								"14-02-2024"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
