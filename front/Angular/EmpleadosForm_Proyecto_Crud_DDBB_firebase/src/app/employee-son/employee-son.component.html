@@ -1,0 +1,15 @@
+
+
+
+<p>{{ indice + 1 }}: {{empleadoDeLista.name }} {{ empleadoDeLista.secondName }} {{ empleadoDeLista.position }} {{ empleadoDeLista.salary }}
+    <a [routerLink]="['/actualizar', indice]" [queryParams]="{accion: '1'}">Actualizar</a>
+    <a [routerLink]="['/actualizar', indice]" [queryParams]="{accion: '2'}">Eliminar</a>  </p>
+    <br>    
+    <app-caracteristicas-empleado (caracteristicasEmpleados)="addCaracteristica($event)"></app-caracteristicas-empleado>
+    <ul style="list-style: none;">
+          <li *ngFor="let cara of arrayCaracteristicas; let i = index"> {{ i + 1 }}: {{ cara }}</li>
+      </ul>
+          
+        
+    
+    

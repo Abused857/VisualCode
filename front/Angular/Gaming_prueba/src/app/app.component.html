@@ -1,0 +1,23 @@
+ <app-user></app-user>
+ <div>
+    <h1>Mi opinión sobre Angular</h1>
+    <article>
+      <p>Angular es un framework de desarrollo de aplicaciones web creado y mantenido por Google. Desde su lanzamiento, ha ganado mucha popularidad entre los desarrolladores web gracias a su estructura robusta y sus numerosas características que facilitan el desarrollo de aplicaciones web complejas.</p>
+      <p>Personalmente, encuentro que Angular es una herramienta poderosa para la creación de aplicaciones web escalables y de alta calidad. Su enfoque en la arquitectura de componentes hace que sea fácil de entender y mantener el código, lo cual es fundamental en proyectos grandes con equipos de desarrollo extensos.</p>
+      <p>Una de las características que más me gusta de Angular es su sistema de inyección de dependencias, que facilita la gestión de las dependencias entre los distintos componentes de la aplicación. Esto promueve una mejor organización del código y facilita las pruebas unitarias, lo cual es crucial para garantizar la calidad del software.</p>
+      <p>Además, Angular viene con una gran cantidad de herramientas y bibliotecas adicionales que simplifican tareas comunes, como el enrutamiento, la validación de formularios y la comunicación con servidores backend. Esto hace que el proceso de desarrollo sea más eficiente y menos propenso a errores.</p>
+      <p>En resumen, creo que Angular es una excelente opción para el desarrollo de aplicaciones web modernas y complejas. Si bien tiene una curva de aprendizaje inicial, los beneficios a largo plazo en términos de mantenibilidad y escalabilidad hacen que valga la pena invertir tiempo en dominar este framework.</p>
+    </article>
+    
+    @defer (on viewport) {
+      <app-comentarios></app-comentarios>
+    }@placeholder {
+      <p>Futuros comentarios</p>
+    }@loading (minimum 1s){
+      <p>Cargando comentarios...</p>
+    }
+    
+  </div>
+
+ 
+   

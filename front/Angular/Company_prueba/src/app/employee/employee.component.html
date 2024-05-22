@@ -1,0 +1,46 @@
+<div class="div1">        
+    <p>Nombre del empleado: {{ nombre }}</p>
+    <p>Apellido del empleado: {{ apellido }}</p>
+    <p>Edad del empleado: {{ getEdad()>=18? " Mayor de edad":" Menor de edad"}}</p>
+    <p>Empresa del empleado: {{ empresa }}</p>
+
+    <p>Esto se modificará segun vayas escribiendo, además habrá un corte en caso de que la palabra no contenga espacios y alcance el ancho de la pantalla definido: {{ changeText.value }} </p>
+
+    <p>Introduce el texto que se modificará al momento mas arriba y el box del input ocupa todo el ancho disponible: <input type = "text" #changeText (keyup)="0"></p>
+
+</div>
+
+<form [formGroup]="form">
+
+    <p>Aquí empieza un form</p>
+
+    <p>Introduce la empresa: <input type="text" formControlName="nuevaEmpresa"></p>
+    <p>Introduce el apellido: <input type="text" formControlName="nuevoApellido"></p>
+  
+    <input class="cambiar-button" type="button" value="Cambiar" (click)="changeEmployeeForm()">
+
+    <p>Aquí termina un form</p>
+</form>
+
+<div class="div2">
+    <p>habilitado con binding <input type = "text" [disabled] = "disableProperty"> <input type = "button" value ="cambiar estado" (click)="disableProperty = !disableProperty"></p>
+
+    <p>Activar el checkbox a través de un binding</p>
+
+    <p>{{ RegisterText }}</p>
+
+    <p>Registrado: <input type="radio" value = "si" id = "register"  name ="nRegister"[checked]="userRegister" (click)="setCheckboxEvent($event)"></p>
+    <p>No registrado <input type="radio"  name ="nRegister" value = "no" (click)="setCheckboxEvent($event)"></p>
+
+    <div class = "div3"> 
+
+        <p>Property two way binding bana in box</p>
+        <p>Property value: {{ companyBinding }}</p>
+        <p>Cambia la property si quieres: <input type ="text" [(ngModel)] = "companyBinding"></p>
+    </div>
+</div>
+
+
+
+
+  

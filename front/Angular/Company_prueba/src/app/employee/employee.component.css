@@ -1,0 +1,71 @@
+ p
+{
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+   
+    overflow-wrap: break-word;
+}
+ .div1 > p:last-of-type
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.div1 > p:nth-last-of-type(2)
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: darkorange;
+}
+
+.div1 > p:nth-last-of-type(1) > input
+{
+    width: 500px;
+    margin-top: 20px;
+    
+}
+.cambiar-button
+{
+    max-width: 500px;
+    margin: 20px auto;
+    display: block;
+    padding: 5px;
+
+}
+form > p:first-of-type
+{
+    margin-top: 20px;
+}
+form > p:not(first-of-type)
+{
+    margin-top: 20px;
+}
+form > p:last-of-type{
+    margin-bottom: 30px;
+}
+.div2 > p
+{
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+   
+}
+.div2 > p > input[type ="button"]
+{
+    margin-left: 10px;
+}
+
+.div2 > p:last-of-type
+{
+    margin-bottom: 20px;
+}
+.div2 > p:not(:first-of-type)
+{
+    margin-top: 20px;
+}
+.div3
+{
+    background-color: chocolate;
+    width: 500px;
+    margin: auto;
+}
