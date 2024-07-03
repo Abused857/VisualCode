@@ -1,13 +1,14 @@
 try:
-    cadena = int(input('Introduce un número: '))
-    decimal = float(input('Introduce un decimal: '))
-    booleano = bool(input('Introduce un booleano: '))
-    print(cadena )
-    print(decimal )
-    print(booleano )
-except ValueError:
-    print('algo salio mal')
-finally:
-    print('aqui va el final')
-    
-
+    decimal = float(input('Introduce tu calificación: '))
+    if decimal < 60 and decimal >= 0:
+        print( "Lo siento, has suspendido. Debes esforzarte más en la próxima evaluación.")
+    elif decimal >= 60 and decimal < 70:
+        print( "Has aprobado, pero necesitas mejorar un poco.")
+    elif decimal >= 70 and decimal < 90:
+        print( "Has aprobado satisfactoriamente.")
+    elif decimal >= 90 and decimal <= 100:
+        print( "¡Felicidades! Has aprobado con una calificación sobresaliente.")
+    else:
+        print('calificación no válida')
+except:
+    print('calificación no válida')
