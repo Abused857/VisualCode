@@ -87,7 +87,7 @@ b = 11 #1011
 
 print(f'AND: 10 & 11 = {10  & 11}')#  compara cada bit de dos números. Si ambos bits son 1, el resultado es 1; de lo contrario, el resultado es 0.
 print(f"OR: 10 | 11 = {10 | 3}")  # compara cada bit de dos números. Si al menos uno de los bits es 1, el resultado es 1; si ambos bits son 0, el resultado es 0.
-print(f'NOT: 10  = {~a}') #preguntar a vero porque sale  -11 mirarse esto detenidamente porque que es complemento a 1 y complemento a 2
+print(f'NOT: 10  = {~10}') #preguntar a vero porque sale  -11 mirarse esto detenidamente porque que es complemento a 1 y complemento a 2
 print (f'XOR: 10 ^ 11 = {a ^ b}') # devuelve true o 1  para combinaciones de 0 1 o 1 a 0 y 0 para las demas
 print(f'>>: 10 >> 2 = {a >> 2}') # desplaza numero de casillas X hacia la derecha el bit
 print(f'<<: 10 << 2 = {b << 2}')# desplaza numero de casillas hacia la izquierda el bit pone x numero de ceros a la derecha
